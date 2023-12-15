@@ -6,15 +6,14 @@ package MarketplaceSayur;
 
 /**
  *
- * @author bara
+ * @author ryanf
  */
-public class form_login extends javax.swing.JFrame {
-        int xx, xy;
-        
+public class loginForm extends javax.swing.JFrame {
+
     /**
-     * Creates new form form_login
+     * Creates new form loginForm
      */
-    public form_login() {
+    public loginForm() {
         initComponents();
     }
 
@@ -28,46 +27,20 @@ public class form_login extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        logo = new javax.swing.JLabel();
-        Name_logo = new javax.swing.JLabel();
-        bt_close = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         bg_page = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        Name_logo = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        logo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        bt_close = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                formMouseDragged(evt);
-            }
-        });
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                formMousePressed(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_customer_30px_1.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 30, 30));
-
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO.jpg"))); // NOI18N
-        getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 70, 70));
-
-        Name_logo.setText("JARD.ID");
-        getContentPane().add(Name_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
-
-        bt_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_cancel_20px.png"))); // NOI18N
-        bt_close.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_closeMouseClicked(evt);
-            }
-        });
-        getContentPane().add(bt_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
+        getContentPane().add(bg_page, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -10, 660, -1));
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Username");
@@ -79,6 +52,9 @@ public class form_login extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 200, 40));
 
+        Name_logo.setText("JARD.ID");
+        getContentPane().add(Name_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
+
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField3.setText("Password");
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
@@ -88,6 +64,8 @@ public class form_login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 200, 40));
+        getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 70, 70));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 50, 30));
 
         jButton1.setBackground(new java.awt.Color(255, 102, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,46 +78,35 @@ public class form_login extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 200, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Profile_Icon_Silhouette_PNG_Transparent__Avatar_Icon_Profile_Icon_Member_Login_Vector_Isolated__Login_Icons__Profile_Icons__Avatar_Icons_PNG_Image_For_Free_Download-removebg-preview.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 50, 30));
-
-        bg_page.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eXp Marketing Center.jpeg"))); // NOI18N
-        getContentPane().add(bg_page, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -10, 660, -1));
+        bt_close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_closeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(bt_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        xx = evt.getX();
-        xy = evt.getY();
-    }//GEN-LAST:event_formMousePressed
-
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - xy);
-    }//GEN-LAST:event_formMouseDragged
-
-    private void bt_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_closeMouseClicked
-        dispose();
-    }//GEN-LAST:event_bt_closeMouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void bt_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_closeMouseClicked
+        dispose();
+    }//GEN-LAST:event_bt_closeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -158,20 +125,20 @@ public class form_login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new form_login().setVisible(true);
+                new loginForm().setVisible(true);
             }
         });
     }

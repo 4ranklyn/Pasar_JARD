@@ -16,7 +16,7 @@ public class FrameUtama extends javax.swing.JFrame {
      * Creates new form Marketplace
      */
     public FrameUtama() {
-        gudang.initialize();
+        AccessXML.loadGudang();
         initComponents();
         PanelJual = new PanelPenjualan().getPanelPenjualan();
         add(PanelJual);
