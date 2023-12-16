@@ -355,7 +355,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="label_konfirmasi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="hui"/>
+        <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
     </Component>
   </SubComponents>

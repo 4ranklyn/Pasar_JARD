@@ -38,12 +38,10 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
             public void insertUpdate(DocumentEvent e) {
                 search();
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 search();
             }
-
             @Override
             public void changedUpdate(DocumentEvent e) {}
         });
@@ -276,7 +274,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
             }
         });
 
-        label_konfirmasi.setText("hui");
+        label_konfirmasi.setText(" ");
 
         setLayer(label_idbarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(kolomIdBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -484,9 +482,14 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
             
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
             for(int i = 0; i < isiKeranjang.getRowCount(); i++){//For each row
+                
+                barang it = gudang.rak.get(model.getValueAt(i, 0));
+                it.modifyProperties(it.getName(), it.getPrice(), it.getQty()-(int)model.getValueAt(i, 3));
+                
                 writer.write(String.format("%-15s%-15s\n", model.getValueAt(i, 0), model.getValueAt(i, 1)));
                 writer.write(String.format("  %-3sPCS x\t %-15s = %-15s\n", model.getValueAt(i, 3), "Rp" + model.getValueAt(i, 2) + ",00", "Rp" + model.getValueAt(i, 4) + ",00"));
             }
+            AccessXML.writeXML();
             writer.write(String.format("\nSUBTOTAL  : %-15s", ("Rp" + KolomSubtotal.getText() + ",00")));
             writer.write(String.format("\nTUNAI     : %-15s", ("Rp" + KolomBayar.getText() + ",00")));
             writer.write(String.format("\nKEMBALIAN : %-15s\n", ("Rp" + KolomKembali.getText() + ",00")));
