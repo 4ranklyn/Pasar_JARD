@@ -162,6 +162,7 @@
         <Property name="text" type="java.lang.String" value="Cetak Laporan"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CetakStokMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CetakStokActionPerformed"/>
       </Events>
     </Component>

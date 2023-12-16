@@ -20,9 +20,9 @@ public class PanelRestok extends javax.swing.JLayeredPane {
      */
     public PanelRestok() {
         initComponents();
-        initComponents();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
+        this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
     }
     
     public javax.swing.JLayeredPane getPanelRestok() {
@@ -107,6 +107,11 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         jScrollPane1.setViewportView(TabelStok);
 
         CetakStok.setText("Cetak Laporan");
+        CetakStok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CetakStokMouseClicked(evt);
+            }
+        });
         CetakStok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CetakStokActionPerformed(evt);
@@ -223,6 +228,47 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     private void CetakStokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CetakStokActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CetakStokActionPerformed
+
+    private void CetakStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CetakStokMouseClicked
+        try {
+           FileWriter fileWriter = new FileWriter(filename, true);
+           BufferedWriter writer = new BufferedWriter(fileWriter);
+
+           SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+           long currentTimeMillis = System.currentTimeMillis();
+           Date currentTime = new Date(currentTimeMillis);
+
+           writer.write("Catatan Daftar Stok Tanggal : " + filename);
+           writer.write(" \nTime -> " + timeFormat.format(currentTime));
+           writer.newLine();
+           writer.write("------------------------------------------");
+           writer.newLine();
+           writer.write("         DAFTAR STOK SUPERMARKET        ");
+           writer.newLine();
+           writer.write("------------------------------------------");
+           writer.newLine();
+
+           for (Produk produk : ProdukList) {
+               writer.write("|Produk: " + produk.getProdukName() + "\t\t" + "| Jumlah Stok: " + produk.getJumlahProduk() +
+                       "\t\t| " + (produk.getJumlahProduk() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
+               writer.newLine();
+               if (produk.getJumlahProduk() <= 0) {
+                   writer.write("Keterangan: Produk " + produk.getProdukName() + " Telah Sold/Sedang Dalam Pengiriman");
+                   writer.newLine();
+               } else {
+                   writer.write("Keterangan: Produk " + produk.getProdukName() + " Tersedia dalam Etalase");
+                   writer.newLine();
+               }
+           }
+           writer.close(); // Menutup objek BufferedReader
+           fileWriter.close();
+
+           System.out.println("Daftar stok telah dicatat dalam file " + filename);
+       } catch (IOException e) {
+           // Menampilkan pesan kesalahan jika terjadi eksepsi
+           System.out.println("Ada error pada i/o");
+       }
+    }//GEN-LAST:event_CetakStokMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
