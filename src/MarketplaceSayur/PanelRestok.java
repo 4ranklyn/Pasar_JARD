@@ -33,8 +33,11 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
         this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
-        
-        
+        for(String id : gudang.rak.keySet()){
+            barang Barang = gudang.rak.get(id);
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
+            model.addRow(new Object[]{id, Barang.getName(), Barang.getQty(), Barang.getPrice()});
+        }        
     }
 
     public javax.swing.JLayeredPane getPanelRestok() {

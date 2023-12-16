@@ -47,4 +47,51 @@ public class AccessXML {
             e.printStackTrace();
         }
     }
+    
+    public static void writeXML(){
+        try {
+            // Create a new DocumentBuilder
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
+
+            // Create root element
+            Element rootElement = doc.createElement("barang"); // Replace 'root' with your root element
+            doc.appendChild(rootElement);
+
+            // Create and append multiple child elements to the root element
+            for(String id : gudang.rak.keySet()){
+                barang Barang = gudang.rak.get(id);
+                
+                Element node = doc.createElement("sayur");
+                rootElement.appendChild(node);
+                
+                Element child_id = doc.createElement("productID");
+                child_id.setTextContent(id);
+                node.appendChild(child_id);
+                
+                Element child_nama = doc.createElement("nama");
+                child_nama.setTextContent(Barang.getName());
+                node.appendChild(child_nama);
+                
+                Element child_jumlahstok = doc.createElement("jumlah_stok");
+                child_jumlahstok.setTextContent(Integer.toString(Barang.getQty()));
+                node.appendChild(child_jumlahstok);
+                
+                Element child_harga = doc.createElement("harga");
+                child_harga.setTextContent(Integer.toString(Barang.getPrice()));
+                node.appendChild(child_harga);
+            }
+
+            // Write the new XML content to the file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("src\\MarketplaceSayur\\Data_gudang.xml")); // Replace 'output.xml' with your output file path
+            transformer.transform(source, result);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
