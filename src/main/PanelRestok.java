@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package main;
+package MarketplaceSayur;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -33,11 +33,6 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
         this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
-        for(String id : gudang.rak.keySet()){
-            barang Barang = gudang.rak.get(id);
-            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
-            model.addRow(new Object[]{id, Barang.getName(), Barang.getQty(), Barang.getPrice()});
-        }        
     }
 
     public javax.swing.JLayeredPane getPanelRestok() {
@@ -217,7 +212,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         
     }                                     
 
-//    private void CetakStokActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void CetakStokActionPerformed(java.awt.event.ActionEvent evt) {                                          
 //        try {
 //            FileWriter fileWriter = new FileWriter(filename, true);
 //            BufferedWriter writer = new BufferedWriter(fileWriter);
@@ -256,7 +251,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
 //            // Menampilkan pesan kesalahan jika terjadi eksepsi
 //            System.out.println("Ada error pada i/o");
 //        }
-//    }                                         
+    }                                         
 
     private void Harga_BarangActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
