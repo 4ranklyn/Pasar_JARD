@@ -86,6 +86,8 @@ public class AccessXML {
             // Write the new XML content to the file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File("src\\main\\Data_gudang.xml")); // Replace 'output.xml' with your output file path
             transformer.transform(source, result);

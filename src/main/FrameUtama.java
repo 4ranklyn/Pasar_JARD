@@ -33,6 +33,9 @@ public class FrameUtama extends javax.swing.JFrame {
         PanelJual.setVisible(false);
         PanelRestok.setVisible(false);
         PanelLogin.setVisible(true);
+        
+        form_login login = new form_login();
+        login.setVisible(true);
     }
 
     /**
@@ -45,8 +48,11 @@ public class FrameUtama extends javax.swing.JFrame {
     private void initComponents() {
 
         Navbar = new javax.swing.JPanel();
+        TombolJual_bg = new javax.swing.JPanel();
         TombolJual = new javax.swing.JButton();
+        TombolRestok_bg = new javax.swing.JPanel();
         TombolRestok = new javax.swing.JButton();
+        TombolLogin_bg = new javax.swing.JPanel();
         TombolLogin = new javax.swing.JButton();
         Content = new javax.swing.JPanel();
         PanelLogin = new javax.swing.JLayeredPane();
@@ -57,9 +63,14 @@ public class FrameUtama extends javax.swing.JFrame {
 
         Navbar.setBackground(new java.awt.Color(0, 128, 129));
 
+        TombolJual_bg.setBackground(new java.awt.Color(0, 128, 129));
+
         TombolJual.setBackground(new java.awt.Color(0, 152, 153));
+        TombolJual.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TombolJual.setForeground(new java.awt.Color(255, 255, 255));
         TombolJual.setText("Transaksi");
         TombolJual.setBorder(null);
+        TombolJual.setContentAreaFilled(false);
         TombolJual.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TombolJual.setFocusPainted(false);
         TombolJual.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -79,9 +90,26 @@ public class FrameUtama extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout TombolJual_bgLayout = new javax.swing.GroupLayout(TombolJual_bg);
+        TombolJual_bg.setLayout(TombolJual_bgLayout);
+        TombolJual_bgLayout.setHorizontalGroup(
+            TombolJual_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(TombolJual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        TombolJual_bgLayout.setVerticalGroup(
+            TombolJual_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(TombolJual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        TombolRestok_bg.setBackground(new java.awt.Color(0, 128, 129));
+
         TombolRestok.setBackground(new java.awt.Color(0, 152, 153));
+        TombolRestok.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TombolRestok.setForeground(new java.awt.Color(255, 255, 255));
         TombolRestok.setText("Pergudangan");
         TombolRestok.setBorder(null);
+        TombolRestok.setBorderPainted(false);
+        TombolRestok.setContentAreaFilled(false);
         TombolRestok.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TombolRestok.setFocusPainted(false);
         TombolRestok.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,9 +129,25 @@ public class FrameUtama extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout TombolRestok_bgLayout = new javax.swing.GroupLayout(TombolRestok_bg);
+        TombolRestok_bg.setLayout(TombolRestok_bgLayout);
+        TombolRestok_bgLayout.setHorizontalGroup(
+            TombolRestok_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(TombolRestok, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        TombolRestok_bgLayout.setVerticalGroup(
+            TombolRestok_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(TombolRestok, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        TombolLogin_bg.setBackground(new java.awt.Color(0, 128, 129));
+
         TombolLogin.setBackground(new java.awt.Color(0, 152, 153));
+        TombolLogin.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TombolLogin.setText("Login");
         TombolLogin.setBorder(null);
+        TombolLogin.setBorderPainted(false);
+        TombolLogin.setContentAreaFilled(false);
         TombolLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TombolLogin.setFocusPainted(false);
         TombolLogin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,22 +167,45 @@ public class FrameUtama extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout TombolLogin_bgLayout = new javax.swing.GroupLayout(TombolLogin_bg);
+        TombolLogin_bg.setLayout(TombolLogin_bgLayout);
+        TombolLogin_bgLayout.setHorizontalGroup(
+            TombolLogin_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 162, Short.MAX_VALUE)
+            .addGroup(TombolLogin_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(TombolLogin_bgLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(TombolLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addGap(0, 0, 0)))
+        );
+        TombolLogin_bgLayout.setVerticalGroup(
+            TombolLogin_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 58, Short.MAX_VALUE)
+            .addGroup(TombolLogin_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(TombolLogin_bgLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(TombolLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout NavbarLayout = new javax.swing.GroupLayout(Navbar);
         Navbar.setLayout(NavbarLayout);
         NavbarLayout.setHorizontalGroup(
             NavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TombolJual, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(TombolLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(TombolRestok, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(TombolJual_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TombolRestok_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(NavbarLayout.createSequentialGroup()
+                .addComponent(TombolLogin_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         NavbarLayout.setVerticalGroup(
             NavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NavbarLayout.createSequentialGroup()
-                .addComponent(TombolJual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TombolJual_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(TombolRestok, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TombolRestok_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
-                .addComponent(TombolLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(TombolLogin_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         Content.setBackground(new java.awt.Color(255, 51, 0));
@@ -201,9 +268,9 @@ public class FrameUtama extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(Navbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(752, Short.MAX_VALUE))
+                .addGap(0, 740, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 151, Short.MAX_VALUE)
@@ -232,11 +299,11 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolJualMouseClicked
 
     private void TombolJualMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolJualMouseEntered
-        TombolJual.setBackground(new Color(0, 152, 153));
+        TombolJual_bg.setBackground(new Color(0, 152, 153));
     }//GEN-LAST:event_TombolJualMouseEntered
 
     private void TombolJualMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolJualMouseExited
-        TombolJual.setBackground(new Color(0, 128, 129));
+        TombolJual_bg.setBackground(new Color(0, 128, 129));
     }//GEN-LAST:event_TombolJualMouseExited
 
     private void TombolLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolLoginActionPerformed
@@ -244,17 +311,20 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolLoginActionPerformed
 
     private void TombolLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolLoginMouseExited
-        TombolLogin.setBackground(new Color(0, 128, 129));
+        TombolLogin_bg.setBackground(new Color(0, 128, 129));
     }//GEN-LAST:event_TombolLoginMouseExited
 
     private void TombolLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolLoginMouseEntered
-        TombolLogin.setBackground(new Color(0, 152, 153));
+        TombolLogin_bg.setBackground(new Color(0, 152, 153));
     }//GEN-LAST:event_TombolLoginMouseEntered
 
     private void TombolLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolLoginMouseClicked
         PanelJual.setVisible(false);
         PanelRestok.setVisible(false);
         PanelLogin.setVisible(true);
+        
+        form_login login = new form_login();
+        login.setVisible(true);
     }//GEN-LAST:event_TombolLoginMouseClicked
 
     private void TombolRestokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolRestokActionPerformed
@@ -262,11 +332,11 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolRestokActionPerformed
 
     private void TombolRestokMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolRestokMouseExited
-        TombolRestok.setBackground(new Color(0, 128, 129));
+        TombolRestok_bg.setBackground(new Color(0, 128, 129));
     }//GEN-LAST:event_TombolRestokMouseExited
 
     private void TombolRestokMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolRestokMouseEntered
-        TombolRestok.setBackground(new Color(0, 152, 153));
+        TombolRestok_bg.setBackground(new Color(0, 152, 153));
     }//GEN-LAST:event_TombolRestokMouseEntered
 
     private void TombolRestokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolRestokMouseClicked
@@ -318,8 +388,11 @@ public class FrameUtama extends javax.swing.JFrame {
     private javax.swing.JLayeredPane PanelLogin;
     private javax.swing.JLayeredPane PanelRestok;
     private javax.swing.JButton TombolJual;
+    private javax.swing.JPanel TombolJual_bg;
     private javax.swing.JButton TombolLogin;
+    private javax.swing.JPanel TombolLogin_bg;
     private javax.swing.JButton TombolRestok;
+    private javax.swing.JPanel TombolRestok_bg;
     // End of variables declaration//GEN-END:variables
 
 }
