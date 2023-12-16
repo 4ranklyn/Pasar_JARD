@@ -6,7 +6,10 @@ package main;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+        
 /**
  *
  * @author ryanf
@@ -14,14 +17,18 @@ import java.util.Date;
 public class PanelRestok extends javax.swing.JLayeredPane {
     
     private javax.swing.JLayeredPane panelRestok = null;
-
+    private String idBarang, namaBarang;
+    private int stokBarang, price; 
+    String filename;
     /**
      * Creates new form PanelRestok
      */
     public PanelRestok() {
         initComponents();
+        initComponents();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
+        this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
     }
     
     public javax.swing.JLayeredPane getPanelRestok() {
@@ -151,14 +158,11 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(Nama_Barang)))
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(Stok_l))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(Stok_f, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Stok_l)
+                            .addComponent(Stok_f, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Harga_Barang, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Harga_barang))
@@ -174,6 +178,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Nama_barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Stok_f, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(input))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,9 +189,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                                 .addComponent(Harga_barang)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Id_barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Harga_Barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Stok_f, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Harga_Barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -208,10 +211,10 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     }//GEN-LAST:event_Stok_fActionPerformed
 
     private void inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputMouseClicked
-        String idBarang = Id_barang.getText();
-        String namaBarang = Nama_barang.getText();
-        int stokBarang = Integer.parseInt(Stok_f.getText());
-        int price = Integer.parseInt(Harga_Barang.getText());
+        idBarang = Id_barang.getText();
+        namaBarang = Nama_barang.getText();
+        stokBarang = Integer.parseInt(Stok_f.getText());
+        price = Integer.parseInt(Harga_Barang.getText());
         gudang.barangBaru(idBarang,namaBarang,price,stokBarang);
         
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
@@ -233,44 +236,45 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     }//GEN-LAST:event_CetakStokActionPerformed
 
     private void CetakStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CetakStokMouseClicked
-//        try {
-//           FileWriter fileWriter = new FileWriter(filename, true);
-//           BufferedWriter writer = new BufferedWriter(fileWriter);
-//
-//           SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-//           long currentTimeMillis = System.currentTimeMillis();
-//           Date currentTime = new Date(currentTimeMillis);
-//
-//           writer.write("Catatan Daftar Stok Tanggal : " + filename);
-//           writer.write(" \nTime -> " + timeFormat.format(currentTime));
-//           writer.newLine();
-//           writer.write("------------------------------------------");
-//           writer.newLine();
-//           writer.write("         DAFTAR STOK SUPERMARKET        ");
-//           writer.newLine();
-//           writer.write("------------------------------------------");
-//           writer.newLine();
-//
-//           for (Produk produk : ProdukList) {
-//               writer.write("|Produk: " + produk.getProdukName() + "\t\t" + "| Jumlah Stok: " + produk.getJumlahProduk() +
-//                       "\t\t| " + (produk.getJumlahProduk() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
-//               writer.newLine();
-//               if (produk.getJumlahProduk() <= 0) {
-//                   writer.write("Keterangan: Produk " + produk.getProdukName() + " Telah Sold/Sedang Dalam Pengiriman");
-//                   writer.newLine();
-//               } else {
-//                   writer.write("Keterangan: Produk " + produk.getProdukName() + " Tersedia dalam Etalase");
-//                   writer.newLine();
-//               }
-//           }
-//           writer.close(); // Menutup objek BufferedReader
-//           fileWriter.close();
-//
-//           System.out.println("Daftar stok telah dicatat dalam file " + filename);
-//       } catch (IOException e) {
-//           // Menampilkan pesan kesalahan jika terjadi eksepsi
-//           System.out.println("Ada error pada i/o");
-//       }
+        try {
+           FileWriter fileWriter = new FileWriter(filename, true);
+           BufferedWriter writer = new BufferedWriter(fileWriter);
+
+           SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+           long currentTimeMillis = System.currentTimeMillis();
+           Date currentTime = new Date(currentTimeMillis);
+
+           writer.write("Catatan Daftar Stok Tanggal : " + filename);
+           writer.write(" \nTime -> " + timeFormat.format(currentTime));
+           writer.newLine();
+           writer.write("------------------------------------------");
+           writer.newLine();
+           writer.write("         DAFTAR STOK SUPERMARKET        ");
+           writer.newLine();
+           writer.write("------------------------------------------");
+           writer.newLine();
+
+           for (String id : gudang.rak.keySet()) {
+               barang it = gudang.rak.get(id);
+               writer.write("|Produk: " + it.getName() + "\t\t" + "| Jumlah Stok: " + it.getQty() +
+                       "\t\t| " + (it.getQty() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
+               writer.newLine();
+               if (it.getQty() <= 0) {
+                   writer.write("Keterangan: Produk " + it.getName() + " Telah Sold/Sedang Dalam Pengiriman");
+                   writer.newLine();
+               } else {
+                   writer.write("Keterangan: Produk " + it.getName() + " Tersedia dalam Etalase");
+                   writer.newLine();
+               }
+           }
+           writer.close(); // Menutup objek BufferedReader
+           fileWriter.close();
+
+           System.out.println("Daftar stok telah dicatat dalam file " + filename);
+       } catch (IOException e) {
+           // Menampilkan pesan kesalahan jika terjadi eksepsi
+           System.out.println("Ada error pada i/o");
+       }
     }//GEN-LAST:event_CetakStokMouseClicked
 
 
