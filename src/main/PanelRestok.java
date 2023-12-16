@@ -17,11 +17,14 @@ import java.io.FileWriter;
 public class PanelRestok extends javax.swing.JLayeredPane {
     
     private javax.swing.JLayeredPane panelRestok = null;
-
+    private String idBarang, namaBarang;
+    private int stokBarang, price; 
+    String filename;
     /**
      * Creates new form PanelRestok
      */
     public PanelRestok() {
+        initComponents();
         initComponents();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
@@ -208,10 +211,10 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     }//GEN-LAST:event_Stok_fActionPerformed
 
     private void inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputMouseClicked
-        String idBarang = Id_barang.getText();
-        String namaBarang = Nama_barang.getText();
-        int stokBarang = Integer.parseInt(Stok_f.getText());
-        int price = Integer.parseInt(Harga_Barang.getText());
+        idBarang = Id_barang.getText();
+        namaBarang = Nama_barang.getText();
+        stokBarang = Integer.parseInt(Stok_f.getText());
+        price = Integer.parseInt(Harga_Barang.getText());
         gudang.barangBaru(idBarang,namaBarang,price,stokBarang);
         
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
