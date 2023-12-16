@@ -9,6 +9,10 @@ import java.util.Date;
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
         
 /**
  *
@@ -25,7 +29,48 @@ public class PanelRestok extends javax.swing.JLayeredPane {
      */
     public PanelRestok() {
         initComponents();
-        initComponents();
+        Document docID = Id_barang.getDocument();
+        docID.addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {}
+        });
+        
+        Document docStok = Stok_f.getDocument();
+        docStok.addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    String text = Stok_f.getText();
+                    if (!text.matches("^[0-9]*$")) {
+                        Stok_f.setText(text.replaceAll("[^0-9]", ""));
+                    } 
+                    if (text.charAt(0) == '0') {
+                        Stok_f.setText(Integer.toString(Integer.parseInt(text)));
+                    }
+                });
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    String text = Stok_f.getText();
+                    if (text.isEmpty()) {
+                        Stok_f.setText("0");
+                    }
+                });
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {}
+        });
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
         this.dateNow = dateFormat.format(currentDate);
@@ -35,6 +80,18 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
             model.addRow(new Object[]{id, Barang.getName(), Barang.getQty(), Barang.getPrice()});
         }
+    }
+    
+        public void search(){
+        String id = Id_barang.getText();
+        if(gudang.rak.get(id)==null){
+            Nama_barang.setText("");
+            Harga_Barang.setText(Integer.toString(0));
+            return;
+        }
+        barang Barang = gudang.rak.get(id);
+        Nama_barang.setText(Barang.getName());
+        Harga_Barang.setText(Integer.toString(Barang.getPrice()));
     }
     
     public javax.swing.JLayeredPane getPanelRestok() {
@@ -222,10 +279,26 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         stokBarang = Integer.parseInt(Stok_f.getText());
         price = Integer.parseInt(Harga_Barang.getText());
         gudang.barangBaru(idBarang,namaBarang,price,stokBarang);
-        
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
-        model.addRow(new Object[]{idBarang, namaBarang, stokBarang, price});
-
+        barang Barang = gudang.rak.get(idBarang);
+        
+        if(Barang != null && qty != 0){
+            boolean addNew = true;
+            
+            int subtotal = 0;
+            for(int i = 0; i < TabelStok.getRowCount(); i++){//For each row
+                if(model.getValueAt(i, 0).equals(id)){//Search the model
+                    int currentQTY = (int) model.getValueAt(i, 3);
+                    model.setValueAt(currentQTY+Integer.parseInt(Stok_f.getText()), i, 3);
+                    addNew = false;
+                }
+                subtotal+=(int) model.getValueAt(i, 4);
+            }
+            if(addNew){
+                model.addRow(new Object[]{idBarang, namaBarang, stokBarang, price});
+            }
+            
+        }
         TabelStok.setModel(model);
     }//GEN-LAST:event_inputMouseClicked
 
