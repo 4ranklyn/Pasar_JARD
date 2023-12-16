@@ -6,7 +6,10 @@ package main;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+        
 /**
  *
  * @author ryanf
@@ -248,15 +251,16 @@ public class PanelRestok extends javax.swing.JLayeredPane {
            writer.write("------------------------------------------");
            writer.newLine();
 
-           for (Produk produk : ProdukList) {
-               writer.write("|Produk: " + produk.getProdukName() + "\t\t" + "| Jumlah Stok: " + produk.getJumlahProduk() +
-                       "\t\t| " + (produk.getJumlahProduk() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
+           for (String id : gudang.rak.keySet()) {
+               barang it = gudang.rak.get(id);
+               writer.write("|Produk: " + it.getName() + "\t\t" + "| Jumlah Stok: " + it.getQty() +
+                       "\t\t| " + (it.getQty() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
                writer.newLine();
-               if (produk.getJumlahProduk() <= 0) {
-                   writer.write("Keterangan: Produk " + produk.getProdukName() + " Telah Sold/Sedang Dalam Pengiriman");
+               if (it.getQty() <= 0) {
+                   writer.write("Keterangan: Produk " + it.getName() + " Telah Sold/Sedang Dalam Pengiriman");
                    writer.newLine();
                } else {
-                   writer.write("Keterangan: Produk " + produk.getProdukName() + " Tersedia dalam Etalase");
+                   writer.write("Keterangan: Produk " + it.getName() + " Tersedia dalam Etalase");
                    writer.newLine();
                }
            }
