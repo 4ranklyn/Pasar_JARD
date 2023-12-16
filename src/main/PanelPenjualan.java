@@ -14,6 +14,13 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 import javax.swing.SwingUtilities;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.time.LocalTime;
+import java.io.File;
 
 public class PanelPenjualan extends javax.swing.JLayeredPane {
     
@@ -73,30 +80,30 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         });
         
         Document kolomBayardoc = KolomBayar.getDocument();
-        kolomQTYdoc.addDocumentListener(new DocumentListener() {
+        kolomBayardoc.addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 SwingUtilities.invokeLater(() -> {
-                    String text = KolomQTY.getText();
+                    String text = KolomBayar.getText();
                     if (!text.matches("^[0-9]*$")) {
-                        KolomQTY.setText(text.replaceAll("[^0-9]", ""));
+                        KolomBayar.setText(text.replaceAll("[^0-9]", ""));
                     }
                     if (text.isEmpty()) {
-                        KolomQTY.setText("0");
+                        KolomBayar.setText("0");
                     } else if (text.charAt(0) == '0') {
-                        KolomQTY.setText(Integer.toString(Integer.parseInt(text)));
+                        KolomBayar.setText(Integer.toString(Integer.parseInt(text)));
                     }
-                    KolomTotalHarga.setText(Integer.toString(Integer.parseInt(KolomHarga.getText()) * Integer.parseInt(KolomQTY.getText())));
+                    KolomKembali.setText(Integer.toString(Integer.parseInt(KolomBayar.getText()) - Integer.parseInt(KolomSubtotal.getText())));
                 });
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
                 SwingUtilities.invokeLater(() -> {
-                    String text = KolomQTY.getText();
+                    String text = KolomBayar.getText();
                     if (text.isEmpty()) {
-                        KolomQTY.setText("0");
+                        KolomBayar.setText("0");
                     }
-                    KolomTotalHarga.setText(Integer.toString(Integer.parseInt(KolomHarga.getText()) * Integer.parseInt(KolomQTY.getText())));
+                    KolomKembali.setText(Integer.toString(Integer.parseInt(KolomBayar.getText()) - Integer.parseInt(KolomSubtotal.getText())));
                 });
             }
             @Override
@@ -151,7 +158,8 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         label_bayar = new javax.swing.JLabel();
         KolomKembali = new javax.swing.JTextField();
         label_kembalian = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        tombol_printstruk = new javax.swing.JButton();
+        label_konfirmasi = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(30, 30, 30));
 
@@ -256,7 +264,19 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
 
         label_kembalian.setText("Kembali");
 
-        jButton1.setText("Print struk");
+        tombol_printstruk.setText("Print struk");
+        tombol_printstruk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tombol_printstrukMouseClicked(evt);
+            }
+        });
+        tombol_printstruk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombol_printstrukActionPerformed(evt);
+            }
+        });
+
+        label_konfirmasi.setText("hui");
 
         setLayer(label_idbarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(kolomIdBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -276,7 +296,8 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         setLayer(label_bayar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(KolomKembali, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(label_kembalian, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(tombol_printstruk, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(label_konfirmasi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -316,27 +337,31 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                                 .addComponent(label_totalharga))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(4, 4, 4)
-                                    .addComponent(KolomSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(36, 36, 36)
-                                    .addComponent(label_subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(36, 36, 36)
+                            .addComponent(label_subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(45, 45, 45)
+                                    .addGap(82, 82, 82)
                                     .addComponent(label_bayar)
-                                    .addGap(111, 111, 111)
-                                    .addComponent(label_kembalian))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(KolomBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGap(100, 100, 100)
+                                    .addComponent(label_kembalian)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
                                     .addComponent(KolomKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1))))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tombol_printstruk))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(KolomSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(KolomBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(label_konfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(35, 35, 35))))
                 .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
@@ -371,8 +396,10 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                     .addComponent(KolomSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(KolomBayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(KolomKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(69, 69, 69))
+                    .addComponent(tombol_printstruk))
+                .addGap(18, 18, 18)
+                .addComponent(label_konfirmasi)
+                .addGap(35, 35, 35))
         );
 
         KolomNamaBarang.setEditable(false);
@@ -434,6 +461,44 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         // TODO add your handling code here:
     }//GEN-LAST:event_tombolTambahkanActionPerformed
 
+    private void tombol_printstrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombol_printstrukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tombol_printstrukActionPerformed
+
+    private void tombol_printstrukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombol_printstrukMouseClicked
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = formatter.format(date);
+        String time = LocalTime.now().getHour() + "." + LocalTime.now().getMinute() + "." + LocalTime.now().getSecond();
+        
+        String userHome = System.getProperty("user.home");
+        String documentsPath = userHome + File.separator + "Documents";
+        String filePath = documentsPath + File.separator + strDate + "_" + time + ".txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("================= TOKO JARD ==================\n");
+            writer.write("----------------------------------------------\n")    ;
+            writer.write("Tanggal\t: " + strDate + '\n');
+            writer.write("Waktu\t: " + LocalTime.now() + '\n');
+            writer.write("----------------------------------------------\n");
+            
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
+            for(int i = 0; i < isiKeranjang.getRowCount(); i++){//For each row
+                writer.write(String.format("%-15s%-15s\n", model.getValueAt(i, 0), model.getValueAt(i, 1)));
+                writer.write(String.format("  %-3sPCS x\t %-15s = %-15s\n", model.getValueAt(i, 3), "Rp" + model.getValueAt(i, 2) + ",00", "Rp" + model.getValueAt(i, 4) + ",00"));
+            }
+            writer.write(String.format("\nSUBTOTAL  : %-15s", ("Rp" + KolomSubtotal.getText() + ",00")));
+            writer.write(String.format("\nTUNAI     : %-15s", ("Rp" + KolomBayar.getText() + ",00")));
+            writer.write(String.format("\nKEMBALIAN : %-15s\n", ("Rp" + KolomKembali.getText() + ",00")));
+
+            writer.write("\n================= TERIMA KASIH =================");
+            label_konfirmasi.setText("Struk pembayaran disimpan di "+filePath);
+        } catch (IOException e) {
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tombol_printstrukMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KolomBayar;
     private javax.swing.JTextField KolomHarga;
@@ -443,17 +508,18 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
     private javax.swing.JTextField KolomSubtotal;
     private javax.swing.JTextField KolomTotalHarga;
     private javax.swing.JTable isiKeranjang;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField kolomIdBarang;
     private javax.swing.JLabel label_bayar;
     private javax.swing.JLabel label_harga;
     private javax.swing.JLabel label_idbarang;
     private javax.swing.JLabel label_kembalian;
+    private javax.swing.JLabel label_konfirmasi;
     private javax.swing.JLabel label_namabarang;
     private javax.swing.JLabel label_qty;
     private javax.swing.JLabel label_subtotal;
     private javax.swing.JLabel label_totalharga;
     private javax.swing.JButton tombolTambahkan;
+    private javax.swing.JButton tombol_printstruk;
     // End of variables declaration//GEN-END:variables
 }
