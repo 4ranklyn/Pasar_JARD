@@ -1,0 +1,35 @@
+Catatan Daftar Stok Tanggal : 16-12-2023 
+Time -> 16-12-2023
+------------------------------------------
+         DAFTAR STOK SUPERMARKET        
+------------------------------------------
+|Produk: Buncis		| Jumlah Stok: 22		| Tersedia		|
+Keterangan: Produk Buncis Tersedia dalam Etalase
+
+|Produk: Wortel		| Jumlah Stok: 18		| Tersedia		|
+Keterangan: Produk Wortel Tersedia dalam Etalase
+
+|Produk: Kentang		| Jumlah Stok: 30		| Tersedia		|
+Keterangan: Produk Kentang Tersedia dalam Etalase
+
+|Produk: Brokoli		| Jumlah Stok: 12		| Tersedia		|
+Keterangan: Produk Brokoli Tersedia dalam Etalase
+
+|Produk: Bayam		| Jumlah Stok: 15		| Tersedia		|
+Keterangan: Produk Bayam Tersedia dalam Etalase
+
+|Produk: Tomat		| Jumlah Stok: 25		| Tersedia		|
+Keterangan: Produk Tomat Tersedia dalam Etalase
+
+|Produk: Kangkung		| Jumlah Stok: 20		| Tersedia		|
+Keterangan: Produk Kangkung Tersedia dalam Etalase
+
+|Produk: Labu		| Jumlah Stok: 14		| Tersedia		|
+Keterangan: Produk Labu Tersedia dalam Etalase
+
+|Produk: Sawi		| Jumlah Stok: 28		| Tersedia		|
+Keterangan: Produk Sawi Tersedia dalam Etalase
+
+|Produk: Lobak		| Jumlah Stok: 17		| Tersedia		|
+Keterangan: Produk Lobak Tersedia dalam Etalase
+

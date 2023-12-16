@@ -19,7 +19,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     private javax.swing.JLayeredPane panelRestok = null;
     private String idBarang, namaBarang;
     private int stokBarang, price; 
-    String filename;
+    String filename, dateNow;
     /**
      * Creates new form PanelRestok
      */
@@ -28,7 +28,13 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         initComponents();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
+        this.dateNow = dateFormat.format(currentDate);
         this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
+        for(String id : gudang.rak.keySet()){
+            barang Barang = gudang.rak.get(id);
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
+            model.addRow(new Object[]{id, Barang.getName(), Barang.getQty(), Barang.getPrice()});
+        }
     }
     
     public javax.swing.JLayeredPane getPanelRestok() {
@@ -237,40 +243,42 @@ public class PanelRestok extends javax.swing.JLayeredPane {
 
     private void CetakStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CetakStokMouseClicked
         try {
-           FileWriter fileWriter = new FileWriter(filename, true);
-           BufferedWriter writer = new BufferedWriter(fileWriter);
+           FileWriter fw = new FileWriter(filename, true);
+           BufferedWriter w = new BufferedWriter(fw);
 
            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
            long currentTimeMillis = System.currentTimeMillis();
            Date currentTime = new Date(currentTimeMillis);
 
-           writer.write("Catatan Daftar Stok Tanggal : " + filename);
-           writer.write(" \nTime -> " + timeFormat.format(currentTime));
-           writer.newLine();
-           writer.write("------------------------------------------");
-           writer.newLine();
-           writer.write("         DAFTAR STOK SUPERMARKET        ");
-           writer.newLine();
-           writer.write("------------------------------------------");
-           writer.newLine();
+           w.write("Catatan Daftar Stok Tanggal : " + dateNow);
+           w.write(" \nTime -> " + dateNow);
+           w.newLine();
+           w.write("------------------------------------------");
+           w.newLine();
+           w.write("         DAFTAR STOK SUPERMARKET        ");
+           w.newLine();
+           w.write("------------------------------------------");
+           w.newLine();
 
            for (String id : gudang.rak.keySet()) {
                barang it = gudang.rak.get(id);
-               writer.write("|Produk: " + it.getName() + "\t\t" + "| Jumlah Stok: " + it.getQty() +
+               w.write("|Produk: " + it.getName() + "\t\t" + "| Jumlah Stok: " + it.getQty() +
                        "\t\t| " + (it.getQty() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
-               writer.newLine();
+               w.newLine();
                if (it.getQty() <= 0) {
-                   writer.write("Keterangan: Produk " + it.getName() + " Telah Sold/Sedang Dalam Pengiriman");
-                   writer.newLine();
+                   w.write("Keterangan: Produk " + it.getName() + " Telah Sold Out/Sedang Dalam Pengiriman");
+                   w.newLine();
+                   w.newLine();
                } else {
-                   writer.write("Keterangan: Produk " + it.getName() + " Tersedia dalam Etalase");
-                   writer.newLine();
+                   w.write("Keterangan: Produk " + it.getName() + " Tersedia dalam Etalase");
+                   w.newLine();
+                   w.newLine();
                }
            }
-           writer.close(); // Menutup objek BufferedReader
-           fileWriter.close();
+           w.close(); // Menutup objek BufferedReader
+           fw.close();
 
-           System.out.println("Daftar stok telah dicatat dalam file " + filename);
+           System.out.println("Laporan telah dicatat dalam file \'" + filename + "\'");
        } catch (IOException e) {
            // Menampilkan pesan kesalahan jika terjadi eksepsi
            System.out.println("Ada error pada i/o");
