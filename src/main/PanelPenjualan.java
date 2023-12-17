@@ -107,6 +107,27 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
             @Override
             public void changedUpdate(DocumentEvent e) {}
         });
+        
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
+        model.addTableModelListener(e -> {
+            if (e.getType() == javax.swing.event.TableModelEvent.UPDATE) {
+                int column = e.getColumn();
+                int row = e.getFirstRow();
+
+                if(column == 3){
+                    model.getValueAt(row, column);
+
+                    int newQTY = (int) model.getValueAt(row, column);
+                    int currentTotal = (int) model.getValueAt(row, 4);
+                    int price = (int) model.getValueAt(row, 2);
+                    model.setValueAt(newQTY*price, row, 4);
+
+                    int deltaPrice = newQTY*price - currentTotal;
+                    int currentSubtotal = Integer.parseInt(KolomSubtotal.getText());
+                    KolomSubtotal.setText(Integer.toString(currentSubtotal+deltaPrice));
+                }
+            }
+        });
     }
     
     public javax.swing.JLayeredPane getPanelPenjualan() {
@@ -126,6 +147,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         barang Barang = gudang.rak.get(id);
         KolomNamaBarang.setText(Barang.getName());
         KolomHarga.setText(Integer.toString(Barang.getPrice()));
+        KolomTotalHarga.setText(Integer.toString(Integer.parseInt(KolomHarga.getText()) * Integer.parseInt(KolomQTY.getText())));
     }
 
     /**
@@ -248,6 +270,11 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                 return canEdit [columnIndex];
             }
         });
+        isiKeranjang.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                isiKeranjangPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(isiKeranjang);
 
         KolomSubtotal.setBackground(new java.awt.Color(30, 30, 30));
@@ -354,12 +381,11 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(4, 4, 4)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(label_konfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(KolomSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(KolomBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(label_konfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(35, 35, 35))))
+                                    .addComponent(KolomBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
@@ -464,43 +490,54 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
     }//GEN-LAST:event_tombol_printstrukActionPerformed
 
     private void tombol_printstrukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombol_printstrukMouseClicked
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String strDate = formatter.format(date);
-        String time = LocalTime.now().getHour() + "." + LocalTime.now().getMinute() + "." + LocalTime.now().getSecond();
-        
-        String userHome = System.getProperty("user.home");
-        String documentsPath = userHome + File.separator + "Documents";
-        String filePath = documentsPath + File.separator + strDate + "_" + time + ".txt";
+        if(Integer.parseInt(KolomKembali.getText()) >= 0){
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            String strDate = formatter.format(date);
+            String time = LocalTime.now().getHour() + "." + LocalTime.now().getMinute() + "." + LocalTime.now().getSecond();
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("================= TOKO JARD ==================\n");
-            writer.write("----------------------------------------------\n")    ;
-            writer.write("Tanggal\t: " + strDate + '\n');
-            writer.write("Waktu\t: " + LocalTime.now() + '\n');
-            writer.write("----------------------------------------------\n");
-            
-            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
-            for(int i = 0; i < isiKeranjang.getRowCount(); i++){//For each row
-                
-                barang it = gudang.rak.get(model.getValueAt(i, 0));
-                it.modifyProperties(it.getName(), it.getPrice(), it.getQty()-(int)model.getValueAt(i, 3));
-                
-                writer.write(String.format("%-15s%-15s\n", model.getValueAt(i, 0), model.getValueAt(i, 1)));
-                writer.write(String.format("  %-3sPCS x\t %-15s = %-15s\n", model.getValueAt(i, 3), "Rp" + model.getValueAt(i, 2) + ",00", "Rp" + model.getValueAt(i, 4) + ",00"));
+            PanelDashboard dashboard = PanelDashboard.getDashboard();
+            dashboard.incrementTotalTransaksi();
+            int newUangKas = Integer.parseInt(KolomSubtotal.getText()) + dashboard.getUangKas();
+            dashboard.setUangKas(newUangKas);
+
+            String userHome = System.getProperty("user.home");
+            String documentsPath = userHome + File.separator + "Documents";
+            String filePath = documentsPath + File.separator + strDate + "_" + time + ".txt";
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                writer.write("================= TOKO JARD ==================\n");
+                writer.write("----------------------------------------------\n")    ;
+                writer.write("Tanggal\t: " + strDate + '\n');
+                writer.write("Waktu\t: " + LocalTime.now() + '\n');
+                writer.write("----------------------------------------------\n");
+
+                javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
+                for(int i = 0; i < isiKeranjang.getRowCount(); i++){//For each row
+
+                    barang it = gudang.rak.get(model.getValueAt(i, 0));
+                    it.modifyProperties(it.getName(), it.getPrice(), it.getQty()-(int)model.getValueAt(i, 3));
+
+                    writer.write(String.format("%-15s%-15s\n", model.getValueAt(i, 0), model.getValueAt(i, 1)));
+                    writer.write(String.format("  %-3sPCS x\t %-15s = %-15s\n", model.getValueAt(i, 3), "Rp" + model.getValueAt(i, 2) + ",00", "Rp" + model.getValueAt(i, 4) + ",00"));
+                }
+                AccessXML.writeXML();
+                writer.write(String.format("\nSUBTOTAL  : %-15s", ("Rp" + KolomSubtotal.getText() + ",00")));
+                writer.write(String.format("\nTUNAI     : %-15s", ("Rp" + KolomBayar.getText() + ",00")));
+                writer.write(String.format("\nKEMBALIAN : %-15s\n", ("Rp" + KolomKembali.getText() + ",00")));
+
+                writer.write("\n================= TERIMA KASIH =================");
+                label_konfirmasi.setText("Struk pembayaran disimpan di "+filePath);
+            } catch (IOException e) {
+                System.out.println("An error occurred");
+                e.printStackTrace();
             }
-            AccessXML.writeXML();
-            writer.write(String.format("\nSUBTOTAL  : %-15s", ("Rp" + KolomSubtotal.getText() + ",00")));
-            writer.write(String.format("\nTUNAI     : %-15s", ("Rp" + KolomBayar.getText() + ",00")));
-            writer.write(String.format("\nKEMBALIAN : %-15s\n", ("Rp" + KolomKembali.getText() + ",00")));
-
-            writer.write("\n================= TERIMA KASIH =================");
-            label_konfirmasi.setText("Struk pembayaran disimpan di "+filePath);
-        } catch (IOException e) {
-            System.out.println("An error occurred");
-            e.printStackTrace();
         }
     }//GEN-LAST:event_tombol_printstrukMouseClicked
+
+    private void isiKeranjangPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_isiKeranjangPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isiKeranjangPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KolomBayar;

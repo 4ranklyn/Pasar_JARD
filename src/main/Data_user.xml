@@ -4,14 +4,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
 -->
 
-<entity>
+<users>
     <user>
         <username>Yanfiq</username>
         <password>luwakwhitecoffee</password>
     </user>
     <user>
         <username>4ranklyn</username>
-        <password></password>
+        <password>nikmatdimulut</password>
     </user>
     <user>
         <username>akhsyaUbaidika</username>
@@ -21,4 +21,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <username>FAISALAKBARr</username>
         <password></password>
     </user>
-</entity>
+</users>

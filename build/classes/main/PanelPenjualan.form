@@ -88,14 +88,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="label_konfirmasi" min="-2" pref="512" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="KolomSubtotal" min="-2" pref="121" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="KolomBayar" min="-2" pref="127" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="label_konfirmasi" min="-2" pref="370" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -302,6 +301,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="isiKeranjangPropertyChange"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -9,13 +9,14 @@ package main;
  * @author ryanf
  */
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -24,6 +25,7 @@ import javax.xml.transform.stream.StreamResult;
 public class AccessXML {
     public static void readXML(){
         try {
+            //baca data gudang
             File inputFile = new File("src\\main\\Data_gudang.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -41,6 +43,25 @@ public class AccessXML {
                     int harga = Integer.parseInt(element.getElementsByTagName("harga").item(0).getTextContent());
                     int qty = Integer.parseInt(element.getElementsByTagName("jumlah_stok").item(0).getTextContent());
                     gudang.barangBaru(id, nama, harga, qty);
+                }
+            }
+            
+            //baca data login
+            File inputFile_user = new File("src\\main\\Data_user.xml");
+            DocumentBuilderFactory dbFactory_user = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder_user = dbFactory_user.newDocumentBuilder();
+            Document doc_user = dBuilder_user.parse(inputFile_user);
+            doc_user.getDocumentElement().normalize();
+
+            NodeList nodeList_user = doc_user.getElementsByTagName("user");
+
+            for (int temp = 0; temp < nodeList_user.getLength(); temp++) {
+                Node node = nodeList_user.item(temp);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    String username = element.getElementsByTagName("username").item(0).getTextContent();
+                    String password = element.getElementsByTagName("password").item(0).getTextContent();
+                    user.addUser(username, password);
                 }
             }
         } catch (Exception e) {
@@ -86,6 +107,8 @@ public class AccessXML {
             // Write the new XML content to the file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File("src\\main\\Data_gudang.xml")); // Replace 'output.xml' with your output file path
             transformer.transform(source, result);
