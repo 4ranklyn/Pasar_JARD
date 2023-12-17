@@ -15,6 +15,7 @@ public class FrameUtama extends javax.swing.JFrame {
     /**
      * Creates new form Marketplace
      */
+    
     public FrameUtama() {
         AccessXML.readXML();
         initComponents();
@@ -144,7 +145,8 @@ public class FrameUtama extends javax.swing.JFrame {
 
         TombolLogin.setBackground(new java.awt.Color(0, 152, 153));
         TombolLogin.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        TombolLogin.setText("Login");
+        TombolLogin.setForeground(new java.awt.Color(255, 255, 255));
+        TombolLogin.setText("Logout");
         TombolLogin.setBorder(null);
         TombolLogin.setBorderPainted(false);
         TombolLogin.setContentAreaFilled(false);
@@ -293,9 +295,11 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolJualActionPerformed
 
     private void TombolJualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolJualMouseClicked
-        PanelJual.setVisible(true);
-        PanelRestok.setVisible(false);
-        PanelLogin.setVisible(false);
+        if(form_login.isLogin){
+            PanelJual.setVisible(true);
+            PanelRestok.setVisible(false);
+            PanelLogin.setVisible(false);
+        }
     }//GEN-LAST:event_TombolJualMouseClicked
 
     private void TombolJualMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolJualMouseEntered
@@ -324,6 +328,8 @@ public class FrameUtama extends javax.swing.JFrame {
         PanelLogin.setVisible(true);
         
         form_login login = new form_login();
+        form_login.isLogin = false;
+        form_login.usernameLogin = null;
         login.setVisible(true);
     }//GEN-LAST:event_TombolLoginMouseClicked
 
@@ -340,9 +346,11 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolRestokMouseEntered
 
     private void TombolRestokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolRestokMouseClicked
-        PanelJual.setVisible(false);
-        PanelRestok.setVisible(true);
-        PanelLogin.setVisible(false);
+        if(form_login.isLogin){
+            PanelJual.setVisible(false);
+            PanelRestok.setVisible(true);
+            PanelLogin.setVisible(false);
+        }
     }//GEN-LAST:event_TombolRestokMouseClicked
     
     /**

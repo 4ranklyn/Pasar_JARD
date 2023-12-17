@@ -23,6 +23,9 @@ public class form_login extends javax.swing.JFrame {
         Username.setText("Username");
         Password.setText("Password");
     }
+    
+    public static boolean isLogin = false;
+    public static String usernameLogin = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +42,7 @@ public class form_login extends javax.swing.JFrame {
         bt_close = new javax.swing.JLabel();
         Username = new javax.swing.JTextField();
         Password = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tombol_login = new javax.swing.JButton();
         bg_page = new javax.swing.JLabel();
         bg_page2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -114,22 +117,22 @@ public class form_login extends javax.swing.JFrame {
         });
         getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 200, 40));
 
-        jButton1.setBackground(new java.awt.Color(102, 204, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("LOGIN");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tombol_login.setBackground(new java.awt.Color(102, 204, 255));
+        tombol_login.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        tombol_login.setForeground(new java.awt.Color(255, 255, 255));
+        tombol_login.setText("LOGIN");
+        tombol_login.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        tombol_login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                tombol_loginMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tombol_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                tombol_loginActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 200, 30));
+        getContentPane().add(tombol_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 200, 30));
 
         bg_page.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eXp_Marketing_Center-removebg-preview.png"))); // NOI18N
         getContentPane().add(bg_page, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 370));
@@ -164,9 +167,9 @@ public class form_login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UsernameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void tombol_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombol_loginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_tombol_loginActionPerformed
 
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
         // TODO add your handling code here:
@@ -200,9 +203,16 @@ public class form_login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PasswordFocusLost
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void tombol_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombol_loginMouseClicked
+        String username = Username.getText();
+        String password = Password.getText();
         
-    }//GEN-LAST:event_jButton1MouseClicked
+        if(user.users.get(username).equals(password)){
+            isLogin = true;
+            usernameLogin = username;
+            dispose();
+        }
+    }//GEN-LAST:event_tombol_loginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -246,9 +256,9 @@ public class form_login extends javax.swing.JFrame {
     private javax.swing.JLabel bg_page;
     private javax.swing.JLabel bg_page2;
     private javax.swing.JLabel bt_close;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton tombol_login;
     // End of variables declaration//GEN-END:variables
 }

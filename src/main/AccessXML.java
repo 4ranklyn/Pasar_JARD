@@ -43,6 +43,24 @@ public class AccessXML {
                     gudang.barangBaru(id, nama, harga, qty);
                 }
             }
+            
+            File inputFile_user = new File("src\\main\\Data_user.xml");
+            DocumentBuilderFactory dbFactory_user = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder_user = dbFactory_user.newDocumentBuilder();
+            Document doc_user = dBuilder_user.parse(inputFile_user);
+            doc_user.getDocumentElement().normalize();
+
+            NodeList nodeList_user = doc_user.getElementsByTagName("users");
+
+            for (int temp = 0; temp < nodeList_user.getLength(); temp++) {
+                Node node = nodeList_user.item(temp);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    String username = element.getElementsByTagName("username").item(0).getTextContent();
+                    String password = element.getElementsByTagName("password").item(0).getTextContent();
+                    user User = new user(username, password);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
