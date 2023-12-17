@@ -53,7 +53,7 @@ public class AccessXML {
             Document doc_user = dBuilder_user.parse(inputFile_user);
             doc_user.getDocumentElement().normalize();
 
-            NodeList nodeList_user = doc_user.getElementsByTagName("users");
+            NodeList nodeList_user = doc_user.getElementsByTagName("user");
 
             for (int temp = 0; temp < nodeList_user.getLength(); temp++) {
                 Node node = nodeList_user.item(temp);
@@ -61,7 +61,7 @@ public class AccessXML {
                     Element element = (Element) node;
                     String username = element.getElementsByTagName("username").item(0).getTextContent();
                     String password = element.getElementsByTagName("password").item(0).getTextContent();
-                    user User = new user(username, password);
+                    user.addUser(username, password);
                 }
             }
         } catch (Exception e) {

@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class user {
     public static HashMap<String, String> users = new HashMap<>();
     
-    user(String username, String password){
+    public static void addUser(String username, String password){
         users.put(username, password);
     }
 }
