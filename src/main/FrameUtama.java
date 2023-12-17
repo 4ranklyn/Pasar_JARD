@@ -149,7 +149,7 @@ public class FrameUtama extends javax.swing.JFrame {
         );
         TombolJual_bgLayout.setVerticalGroup(
             TombolJual_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TombolJual, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+            .addComponent(TombolJual, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
         );
 
         TombolRestok_bg.setBackground(new java.awt.Color(0, 128, 129));
@@ -255,11 +255,11 @@ public class FrameUtama extends javax.swing.JFrame {
         NavbarLayout.setVerticalGroup(
             NavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NavbarLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(65, 65, 65)
                 .addComponent(TombolJual_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(TombolRestok_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
                 .addComponent(TombolLogin_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(NavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(NavbarLayout.createSequentialGroup()
@@ -352,11 +352,9 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolJualActionPerformed
 
     private void TombolJualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolJualMouseClicked
-        if(form_login.isLogin){
-            PanelJual.setVisible(true);
-            PanelRestok.setVisible(false);
-            PanelDashboard.setVisible(false);
-        }
+        PanelJual.setVisible(true);
+        PanelRestok.setVisible(false);
+        PanelDashboard.setVisible(false);
     }//GEN-LAST:event_TombolJualMouseClicked
 
     private void TombolJualMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolJualMouseEntered
@@ -402,15 +400,15 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolRestokMouseEntered
 
     private void TombolRestokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolRestokMouseClicked
-        if(form_login.isLogin){
-            PanelJual.setVisible(false);
-            PanelRestok.setVisible(true);
-            PanelLogin.setVisible(false);
-        }
+        PanelJual.setVisible(false);
+        PanelRestok.setVisible(true);
+        PanelDashboard.setVisible(false);
     }//GEN-LAST:event_TombolRestokMouseClicked
 
     private void TombolDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolDashboardMouseClicked
-        // TODO add your handling code here:
+        PanelJual.setVisible(false);
+        PanelRestok.setVisible(false);
+        PanelDashboard.setVisible(true);
     }//GEN-LAST:event_TombolDashboardMouseClicked
 
     private void TombolDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolDashboardMouseEntered

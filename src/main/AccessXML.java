@@ -9,13 +9,14 @@ package main;
  * @author ryanf
  */
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -24,6 +25,7 @@ import javax.xml.transform.stream.StreamResult;
 public class AccessXML {
     public static void readXML(){
         try {
+            //baca data gudang
             File inputFile = new File("src\\main\\Data_gudang.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -44,6 +46,7 @@ public class AccessXML {
                 }
             }
             
+            //baca data login
             File inputFile_user = new File("src\\main\\Data_user.xml");
             DocumentBuilderFactory dbFactory_user = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder_user = dbFactory_user.newDocumentBuilder();

@@ -24,8 +24,6 @@ import java.awt.event.ItemListener;
 public class PanelRestok extends javax.swing.JLayeredPane {
     
     private javax.swing.JLayeredPane panelRestok = null;
-    private String idBarang, namaBarang;
-    private int stokBarang, price; 
     private boolean addAble = true;
     String filename, dateNow;
     /**
@@ -100,13 +98,31 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             }
         });
         
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
+        model.addTableModelListener(e -> {
+            if (e.getType() == javax.swing.event.TableModelEvent.UPDATE) {
+                int column = e.getColumn();
+                int row = e.getFirstRow();
+
+                // Check if the updated column is the desired column
+                if (column != 0) {
+                    String id = model.getValueAt(row, 0).toString();
+                    String nama = model.getValueAt(row, 1).toString();
+                    int stok = (int) model.getValueAt(row, 2);
+                    int harga = (int) model.getValueAt(row, 3);
+                    
+                    gudang.rak.get(id).modifyProperties(nama, harga, stok);
+                    AccessXML.writeXML();
+                }
+            }
+        });
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date(); //mengakses tanggal terkini
         this.dateNow = dateFormat.format(currentDate);
         this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
         for(String id : gudang.rak.keySet()){
             barang Barang = gudang.rak.get(id);
-            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
             model.addRow(new Object[]{id, Barang.getName(), Barang.getQty(), Barang.getPrice()});
         }
     }
@@ -204,7 +220,22 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             new String [] {
                 "Id Barang", "Nama Barang", "Stok", "Harga per Barang"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TabelStok);
 
         CetakStok.setText("Cetak Laporan");
@@ -333,28 +364,27 @@ public class PanelRestok extends javax.swing.JLayeredPane {
 
     private void inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputMouseClicked
         if(addAble){
-            idBarang = Id_barang.getText();
-            namaBarang = Nama_barang.getText();
-            stokBarang = Integer.parseInt(Stok_barang.getText());
-            price = Integer.parseInt(Harga_Barang.getText());
-            gudang.barangBaru(idBarang,namaBarang,price,stokBarang);
+            String idBarang = Id_barang.getText();
+            String namaBarang = Nama_barang.getText();
+            int stokBarang = Integer.parseInt(Stok_barang.getText());
+            int hargaBarang = Integer.parseInt(Harga_Barang.getText());
+            gudang.barangBaru(idBarang,namaBarang,hargaBarang,stokBarang);
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
             barang Barang = gudang.rak.get(idBarang);
 
             if(Barang != null && stokBarang != 0){
-                boolean addNew = true;
                 for(int i = 0; i < TabelStok.getRowCount(); i++){
                     if(model.getValueAt(i, 0).equals(idBarang)){
                         int currentQTY = (int) model.getValueAt(i, 2);
                         model.setValueAt(currentQTY+Integer.parseInt(Stok_barang.getText()), i, 2);
-                        gudang.rak.get(idBarang).modifyProperties(namaBarang, price, 0);
-                        addNew = false;
+                        gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, 0);
                     }
                 }
-                if(addNew){
-                    model.addRow(new Object[]{idBarang, namaBarang, stokBarang, price});
-                }
+            }else{
+                model.addRow(new Object[]{idBarang, namaBarang, stokBarang, hargaBarang});
+                gudang.barangBaru(idBarang, namaBarang, hargaBarang, stokBarang);
             }
+            AccessXML.writeXML();
             TabelStok.setModel(model);
         }
     }//GEN-LAST:event_inputMouseClicked
@@ -418,7 +448,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     private void isBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isBaruActionPerformed
         if(this.isBaru.isSelected()){
             Nama_barang.setEnabled(true);
-            Harga_barang.setEnabled(true);
+            Harga_Barang.setEnabled(true);
         }else{
             Nama_barang.setEnabled(false);
             Harga_Barang.setEnabled(false);
