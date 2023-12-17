@@ -16,6 +16,7 @@ public class form_login extends javax.swing.JFrame {
      * Creates new form form_login
      */
     public form_login() {
+        AccessXML.readXML();
         initComponents();
     }
     
@@ -210,6 +211,9 @@ public class form_login extends javax.swing.JFrame {
         if(user.users.get(username).equals(password)){
             isLogin = true;
             usernameLogin = username;
+            FrameUtama mainApp = new FrameUtama();
+            mainApp.showPanelDashboard();
+            mainApp.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_tombol_loginMouseClicked

@@ -17,8 +17,13 @@ public class FrameUtama extends javax.swing.JFrame {
      */
     
     public FrameUtama() {
-        AccessXML.readXML();
+        
         initComponents();
+        
+        PanelDashboard = new PanelDashboard().getPanelDashboard();
+        add(PanelDashboard);
+        PanelDashboard.setBounds(0, 0, 847, 505);
+        
         PanelJual = new PanelPenjualan().getPanelPenjualan();
         add(PanelJual);
         PanelJual.setBounds(0, 0, 847, 505);
@@ -27,16 +32,14 @@ public class FrameUtama extends javax.swing.JFrame {
         add(PanelRestok);
         PanelRestok.setBounds(0, 0, 847, 505);
         
-        PanelLogin = new PanelLogin().getPanelLogin();
-        add(PanelLogin);
-        PanelLogin.setBounds(0, 0, 847, 505);
-        
         PanelJual.setVisible(false);
         PanelRestok.setVisible(false);
-        PanelLogin.setVisible(true);
-        
-        form_login login = new form_login();
-        login.setVisible(true);
+    }
+    
+    public void showPanelDashboard(){
+        PanelJual.setVisible(false);
+        PanelRestok.setVisible(false);
+        PanelDashboard.setVisible(true);
     }
 
     /**
@@ -58,7 +61,7 @@ public class FrameUtama extends javax.swing.JFrame {
         TombolLogin_bg = new javax.swing.JPanel();
         TombolLogin = new javax.swing.JButton();
         Content = new javax.swing.JPanel();
-        PanelLogin = new javax.swing.JLayeredPane();
+        PanelDashboard = new javax.swing.JLayeredPane();
         PanelJual = new javax.swing.JLayeredPane();
         PanelRestok = new javax.swing.JLayeredPane();
 
@@ -146,9 +149,7 @@ public class FrameUtama extends javax.swing.JFrame {
         );
         TombolJual_bgLayout.setVerticalGroup(
             TombolJual_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TombolJual_bgLayout.createSequentialGroup()
-                .addComponent(TombolJual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(TombolJual, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
         );
 
         TombolRestok_bg.setBackground(new java.awt.Color(0, 128, 129));
@@ -268,14 +269,14 @@ public class FrameUtama extends javax.swing.JFrame {
 
         Content.setBackground(new java.awt.Color(255, 51, 0));
 
-        javax.swing.GroupLayout PanelLoginLayout = new javax.swing.GroupLayout(PanelLogin);
-        PanelLogin.setLayout(PanelLoginLayout);
-        PanelLoginLayout.setHorizontalGroup(
-            PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+        javax.swing.GroupLayout PanelDashboardLayout = new javax.swing.GroupLayout(PanelDashboard);
+        PanelDashboard.setLayout(PanelDashboardLayout);
+        PanelDashboardLayout.setHorizontalGroup(
+            PanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 741, Short.MAX_VALUE)
         );
-        PanelLoginLayout.setVerticalGroup(
-            PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PanelDashboardLayout.setVerticalGroup(
+            PanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 518, Short.MAX_VALUE)
         );
 
@@ -285,7 +286,7 @@ public class FrameUtama extends javax.swing.JFrame {
         PanelJual.setLayout(PanelJualLayout);
         PanelJualLayout.setHorizontalGroup(
             PanelJualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+            .addGap(0, 741, Short.MAX_VALUE)
         );
         PanelJualLayout.setVerticalGroup(
             PanelJualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +297,7 @@ public class FrameUtama extends javax.swing.JFrame {
         PanelRestok.setLayout(PanelRestokLayout);
         PanelRestokLayout.setHorizontalGroup(
             PanelRestokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+            .addGap(0, 741, Short.MAX_VALUE)
         );
         PanelRestokLayout.setVerticalGroup(
             PanelRestokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,11 +308,11 @@ public class FrameUtama extends javax.swing.JFrame {
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelJual)
             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PanelRestok))
             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PanelLogin))
+                .addComponent(PanelDashboard))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +320,7 @@ public class FrameUtama extends javax.swing.JFrame {
             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PanelRestok))
             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PanelLogin))
+                .addComponent(PanelDashboard))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -331,7 +332,7 @@ public class FrameUtama extends javax.swing.JFrame {
                 .addGap(0, 740, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 151, Short.MAX_VALUE)
+                    .addGap(0, 161, Short.MAX_VALUE)
                     .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
@@ -354,7 +355,7 @@ public class FrameUtama extends javax.swing.JFrame {
         if(form_login.isLogin){
             PanelJual.setVisible(true);
             PanelRestok.setVisible(false);
-            PanelLogin.setVisible(false);
+            PanelDashboard.setVisible(false);
         }
     }//GEN-LAST:event_TombolJualMouseClicked
 
@@ -379,9 +380,8 @@ public class FrameUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_TombolLoginMouseEntered
 
     private void TombolLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolLoginMouseClicked
-        PanelJual.setVisible(false);
-        PanelRestok.setVisible(false);
-        PanelLogin.setVisible(true);
+        AccessXML.writeXML();
+        dispose();
         
         form_login login = new form_login();
         form_login.isLogin = false;
@@ -464,8 +464,8 @@ public class FrameUtama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content;
     private javax.swing.JPanel Navbar;
+    private javax.swing.JLayeredPane PanelDashboard;
     private javax.swing.JLayeredPane PanelJual;
-    private javax.swing.JLayeredPane PanelLogin;
     private javax.swing.JLayeredPane PanelRestok;
     private javax.swing.JButton TombolDashboard;
     private javax.swing.JPanel TombolDashboard_bg;
