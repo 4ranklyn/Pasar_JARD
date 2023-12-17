@@ -49,6 +49,8 @@ public class FrameUtama extends javax.swing.JFrame {
     private void initComponents() {
 
         Navbar = new javax.swing.JPanel();
+        TombolDashboard_bg = new javax.swing.JPanel();
+        TombolDashboard = new javax.swing.JButton();
         TombolJual_bg = new javax.swing.JPanel();
         TombolJual = new javax.swing.JButton();
         TombolRestok_bg = new javax.swing.JPanel();
@@ -61,8 +63,53 @@ public class FrameUtama extends javax.swing.JFrame {
         PanelRestok = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         Navbar.setBackground(new java.awt.Color(0, 128, 129));
+
+        TombolDashboard_bg.setBackground(new java.awt.Color(0, 128, 129));
+
+        TombolDashboard.setBackground(new java.awt.Color(0, 152, 153));
+        TombolDashboard.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TombolDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        TombolDashboard.setText("Dashboard");
+        TombolDashboard.setBorder(null);
+        TombolDashboard.setContentAreaFilled(false);
+        TombolDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TombolDashboard.setFocusPainted(false);
+        TombolDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TombolDashboardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TombolDashboardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TombolDashboardMouseExited(evt);
+            }
+        });
+        TombolDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TombolDashboardActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TombolDashboard_bgLayout = new javax.swing.GroupLayout(TombolDashboard_bg);
+        TombolDashboard_bg.setLayout(TombolDashboard_bgLayout);
+        TombolDashboard_bgLayout.setHorizontalGroup(
+            TombolDashboard_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 162, Short.MAX_VALUE)
+            .addGroup(TombolDashboard_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(TombolDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+        );
+        TombolDashboard_bgLayout.setVerticalGroup(
+            TombolDashboard_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 64, Short.MAX_VALUE)
+            .addGroup(TombolDashboard_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(TombolDashboard_bgLayout.createSequentialGroup()
+                    .addComponent(TombolDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         TombolJual_bg.setBackground(new java.awt.Color(0, 128, 129));
 
@@ -99,7 +146,9 @@ public class FrameUtama extends javax.swing.JFrame {
         );
         TombolJual_bgLayout.setVerticalGroup(
             TombolJual_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TombolJual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(TombolJual_bgLayout.createSequentialGroup()
+                .addComponent(TombolJual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         TombolRestok_bg.setBackground(new java.awt.Color(0, 128, 129));
@@ -182,7 +231,7 @@ public class FrameUtama extends javax.swing.JFrame {
         );
         TombolLogin_bgLayout.setVerticalGroup(
             TombolLogin_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 58, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
             .addGroup(TombolLogin_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(TombolLogin_bgLayout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -199,15 +248,22 @@ public class FrameUtama extends javax.swing.JFrame {
             .addGroup(NavbarLayout.createSequentialGroup()
                 .addComponent(TombolLogin_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(NavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(TombolDashboard_bg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         NavbarLayout.setVerticalGroup(
             NavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NavbarLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
                 .addComponent(TombolJual_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(TombolRestok_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
                 .addComponent(TombolLogin_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(NavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(NavbarLayout.createSequentialGroup()
+                    .addComponent(TombolDashboard_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         Content.setBackground(new java.awt.Color(255, 51, 0));
@@ -352,6 +408,22 @@ public class FrameUtama extends javax.swing.JFrame {
             PanelLogin.setVisible(false);
         }
     }//GEN-LAST:event_TombolRestokMouseClicked
+
+    private void TombolDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolDashboardMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TombolDashboardMouseClicked
+
+    private void TombolDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolDashboardMouseEntered
+        TombolDashboard_bg.setBackground(new Color(0, 152, 153));
+    }//GEN-LAST:event_TombolDashboardMouseEntered
+
+    private void TombolDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TombolDashboardMouseExited
+        TombolDashboard_bg.setBackground(new Color(0, 128, 129));
+    }//GEN-LAST:event_TombolDashboardMouseExited
+
+    private void TombolDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolDashboardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TombolDashboardActionPerformed
     
     /**
      * @param args the command line arguments
@@ -395,6 +467,8 @@ public class FrameUtama extends javax.swing.JFrame {
     private javax.swing.JLayeredPane PanelJual;
     private javax.swing.JLayeredPane PanelLogin;
     private javax.swing.JLayeredPane PanelRestok;
+    private javax.swing.JButton TombolDashboard;
+    private javax.swing.JPanel TombolDashboard_bg;
     private javax.swing.JButton TombolJual;
     private javax.swing.JPanel TombolJual_bg;
     private javax.swing.JButton TombolLogin;

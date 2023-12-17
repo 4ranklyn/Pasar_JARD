@@ -24,7 +24,7 @@ public class form_login extends javax.swing.JFrame {
         Password.setText("Password");
     }
     
-    public static boolean isLogin = false;
+    public static boolean isLogin = true;
     public static String usernameLogin = null;
 
     /**

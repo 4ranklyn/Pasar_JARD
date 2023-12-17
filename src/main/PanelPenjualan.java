@@ -107,6 +107,27 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
             @Override
             public void changedUpdate(DocumentEvent e) {}
         });
+        
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
+        model.addTableModelListener(e -> {
+            if (e.getType() == javax.swing.event.TableModelEvent.UPDATE) {
+                int column = e.getColumn();
+                int row = e.getFirstRow();
+
+                if(column == 3){
+                    model.getValueAt(row, column);
+
+                    int newQTY = (int) model.getValueAt(row, column);
+                    int currentTotal = (int) model.getValueAt(row, 4);
+                    int price = (int) model.getValueAt(row, 2);
+                    model.setValueAt(newQTY*price, row, 4);
+
+                    int deltaPrice = newQTY*price - currentTotal;
+                    int currentSubtotal = Integer.parseInt(KolomSubtotal.getText());
+                    KolomSubtotal.setText(Integer.toString(currentSubtotal+deltaPrice));
+                }
+            }
+        });
     }
     
     public javax.swing.JLayeredPane getPanelPenjualan() {
@@ -126,6 +147,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         barang Barang = gudang.rak.get(id);
         KolomNamaBarang.setText(Barang.getName());
         KolomHarga.setText(Integer.toString(Barang.getPrice()));
+        KolomTotalHarga.setText(Integer.toString(Integer.parseInt(KolomHarga.getText()) * Integer.parseInt(KolomQTY.getText())));
     }
 
     /**
@@ -246,6 +268,11 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        isiKeranjang.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                isiKeranjangPropertyChange(evt);
             }
         });
         jScrollPane1.setViewportView(isiKeranjang);
@@ -500,6 +527,10 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tombol_printstrukMouseClicked
+
+    private void isiKeranjangPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_isiKeranjangPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isiKeranjangPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KolomBayar;

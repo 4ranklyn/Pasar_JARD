@@ -301,6 +301,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="isiKeranjangPropertyChange"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
