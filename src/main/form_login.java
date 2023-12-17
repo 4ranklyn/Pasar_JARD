@@ -39,10 +39,10 @@ public class form_login extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
+        Password = new javax.swing.JPasswordField();
         Name_logo = new javax.swing.JLabel();
         bt_close = new javax.swing.JLabel();
         Username = new javax.swing.JTextField();
-        Password = new javax.swing.JTextField();
         tombol_login = new javax.swing.JButton();
         bg_page = new javax.swing.JLabel();
         bg_page2 = new javax.swing.JLabel();
@@ -67,6 +67,7 @@ public class form_login extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3916598.png"))); // NOI18N
         getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 140, 140));
+        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 200, 40));
 
         Name_logo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Name_logo.setText("JARD.ID");
@@ -98,25 +99,6 @@ public class form_login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 200, 40));
-
-        Password.setForeground(new java.awt.Color(102, 102, 102));
-        Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Password.setText("Password");
-        Password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        Password.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                PasswordFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                PasswordFocusLost(evt);
-            }
-        });
-        Password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 200, 40));
 
         tombol_login.setBackground(new java.awt.Color(102, 204, 255));
         tombol_login.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -172,10 +154,6 @@ public class form_login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tombol_loginActionPerformed
 
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
-
     private void UsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFocusGained
         String username=Username.getText();
         if(username.equals("Username")){
@@ -183,26 +161,12 @@ public class form_login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UsernameFocusGained
 
-    private void PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusGained
-        String pass=Password.getText();
-        if(pass.equals("Password")){
-            Password.setText("");
-        }
-    }//GEN-LAST:event_PasswordFocusGained
-
     private void UsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFocusLost
         String username=Username.getText();
         if(username.equals("")||username.equals("Username")){
             Username.setText("Username");
         }
     }//GEN-LAST:event_UsernameFocusLost
-
-    private void PasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusLost
-        String pass=Password.getText();
-        if(pass.equals("")||pass.equals("Password")){
-            Password.setText("Password");
-        }
-    }//GEN-LAST:event_PasswordFocusLost
 
     private void tombol_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombol_loginMouseClicked
         String username = Username.getText();
@@ -255,7 +219,7 @@ public class form_login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Name_logo;
-    private javax.swing.JTextField Password;
+    private javax.swing.JPasswordField Password;
     private javax.swing.JTextField Username;
     private javax.swing.JLabel bg_page;
     private javax.swing.JLabel bg_page2;
