@@ -381,9 +381,9 @@ public class FrameUtama extends javax.swing.JFrame {
         AccessXML.writeXML();
         dispose();
         
-        form_login login = new form_login();
-        form_login.isLogin = false;
-        form_login.usernameLogin = null;
+        FormLogin login = new FormLogin();
+        FormLogin.isLogin = false;
+        FormLogin.usernameLogin = null;
         login.setVisible(true);
     }//GEN-LAST:event_TombolLoginMouseClicked
 

@@ -28,7 +28,7 @@ public class PanelDashboard extends javax.swing.JLayeredPane {
     public PanelDashboard() {
         initComponents();
         xml2app();
-        welcome.setText("Selamat datang "+form_login.usernameLogin);
+        welcome.setText("Selamat datang "+FormLogin.usernameLogin);
     }
     
     public static javax.swing.JLayeredPane getPanelDashboard() {

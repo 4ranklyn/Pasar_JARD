@@ -9,13 +9,13 @@ package main;
  *
  * @author bara
  */
-public class form_login extends javax.swing.JFrame {
+public class FormLogin extends javax.swing.JFrame {
         int xx, xy;
         
     /**
      * Creates new form form_login
      */
-    public form_login() {
+    public FormLogin() {
         AccessXML.readXML();
         initComponents();
     }
@@ -176,7 +176,7 @@ public class form_login extends javax.swing.JFrame {
         String username = Username.getText();
         String password = Password.getText();
         
-        if(user.users.get(username).equals(password)){
+        if(User.users.get(username).equals(password)){
             isLogin = true;
             usernameLogin = username;
             FrameUtama mainApp = new FrameUtama();
@@ -203,20 +203,21 @@ public class form_login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new form_login().setVisible(true);
+                new FormLogin().setVisible(true);
             }
         });
     }

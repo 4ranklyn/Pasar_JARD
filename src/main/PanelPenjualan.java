@@ -139,12 +139,12 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
     
     public void search(){
         String id = kolomIdBarang.getText();
-        if(gudang.rak.get(id)==null){
+        if(Gudang.rak.get(id)==null){
             KolomNamaBarang.setText("");
             KolomHarga.setText(Integer.toString(0));
             return;
         }
-        barang Barang = gudang.rak.get(id);
+        Barang Barang = Gudang.rak.get(id);
         KolomNamaBarang.setText(Barang.getName());
         KolomHarga.setText(Integer.toString(Barang.getPrice()));
         KolomTotalHarga.setText(Integer.toString(Integer.parseInt(KolomHarga.getText()) * Integer.parseInt(KolomQTY.getText())));
@@ -438,7 +438,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
     private void tombolTambahkanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolTambahkanMouseClicked
         String id = kolomIdBarang.getText();
         int qty = Integer.parseInt(KolomQTY.getText());
-        barang Barang = gudang.rak.get(id);
+        Barang Barang = Gudang.rak.get(id);
         if(Barang != null && qty != 0){
             boolean addNew = true;
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
@@ -515,7 +515,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                 javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
                 for(int i = 0; i < isiKeranjang.getRowCount(); i++){//For each row
 
-                    barang it = gudang.rak.get(model.getValueAt(i, 0));
+                    Barang it = Gudang.rak.get(model.getValueAt(i, 0));
                     it.modifyProperties(it.getName(), it.getPrice(), it.getQty()-(int)model.getValueAt(i, 3));
 
                     writer.write(String.format("%-15s%-15s\n", model.getValueAt(i, 0), model.getValueAt(i, 1)));
