@@ -42,7 +42,7 @@ public class AccessXML {
                     String nama = element.getElementsByTagName("nama").item(0).getTextContent();
                     int harga = Integer.parseInt(element.getElementsByTagName("harga").item(0).getTextContent());
                     int qty = Integer.parseInt(element.getElementsByTagName("jumlah_stok").item(0).getTextContent());
-                    gudang.barangBaru(id, nama, harga, qty);
+                    Gudang.barangBaru(id, nama, harga, qty);
                 }
             }
             
@@ -61,7 +61,7 @@ public class AccessXML {
                     Element element = (Element) node;
                     String username = element.getElementsByTagName("username").item(0).getTextContent();
                     String password = element.getElementsByTagName("password").item(0).getTextContent();
-                    user.addUser(username, password);
+                    User.addUser(username, password);
                 }
             }
         } catch (Exception e) {
@@ -81,8 +81,8 @@ public class AccessXML {
             doc.appendChild(rootElement);
 
             // Create and append multiple child elements to the root element
-            for(String id : gudang.rak.keySet()){
-                barang Barang = gudang.rak.get(id);
+            for(String id : Gudang.rak.keySet()){
+                Barang Barang = Gudang.rak.get(id);
                 
                 Element node = doc.createElement("sayur");
                 rootElement.appendChild(node);

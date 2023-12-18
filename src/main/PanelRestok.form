@@ -18,8 +18,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="129" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="Id_Barang" min="-2" max="-2" attributes="0"/>
                           <Component id="Id_barang" min="-2" pref="51" max="-2" attributes="0"/>
@@ -53,13 +53,10 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="input" min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="494" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="warning" min="-2" pref="327" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="CetakStok" min="-2" pref="114" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="jScrollPane1" alignment="1" min="-2" pref="494" max="-2" attributes="0"/>
+                      <Component id="CetakStok" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
+                      <Component id="warning" alignment="1" min="-2" pref="494" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
@@ -94,13 +91,12 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="335" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="297" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="warning" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CetakStok" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <Component id="CetakStok" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="warning" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

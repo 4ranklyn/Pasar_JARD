@@ -9,7 +9,7 @@ import java.util.HashMap;
  *
  * @author ryanf
  */
-public class user {
+public class User {
     public static HashMap<String, String> users = new HashMap<>();
     
     public static void addUser(String username, String password){

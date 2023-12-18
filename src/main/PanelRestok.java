@@ -15,10 +15,11 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
         
 /**
  *
- * @author ryanf
+ * @author jassonf
  */
 
 public class PanelRestok extends javax.swing.JLayeredPane {
@@ -87,6 +88,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         });
         
         isBaru.addItemListener(new ItemListener() {
+            @Override
             public void itemStateChanged(ItemEvent e) {
                 if (isBaru.isSelected() && search()) {
                     addAble = false;
@@ -111,7 +113,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                     int stok = (int) model.getValueAt(row, 2);
                     int harga = (int) model.getValueAt(row, 3);
                     
-                    gudang.rak.get(id).modifyProperties(nama, harga, stok);
+                    Gudang.rak.get(id).modifyProperties(nama, harga, stok);
                     AccessXML.writeXML();
                 }
             }
@@ -121,22 +123,22 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         Date currentDate = new Date(); //mengakses tanggal terkini
         this.dateNow = dateFormat.format(currentDate);
         this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
-        for(String id : gudang.rak.keySet()){
-            barang Barang = gudang.rak.get(id);
-            model.addRow(new Object[]{id, Barang.getName(), Barang.getQty(), Barang.getPrice()});
+        for(String id : Gudang.rak.keySet()){
+            Barang barang = Gudang.rak.get(id);
+            model.addRow(new Object[]{id, barang.getName(), barang.getQty(), barang.getPrice()});
         }
     }
     
     public boolean search(){
         String id = Id_barang.getText();
-        if(gudang.rak.get(id)==null){
+        if(Gudang.rak.get(id)==null){
             Nama_barang.setText("");
             Harga_Barang.setText(Integer.toString(0));
             return false;
         }
-        barang Barang = gudang.rak.get(id);
-        Nama_barang.setText(Barang.getName());
-        Harga_Barang.setText(Integer.toString(Barang.getPrice()));
+        Barang barang = Gudang.rak.get(id);
+        Nama_barang.setText(barang.getName());
+        Harga_Barang.setText(Integer.toString(barang.getPrice()));
         return true;
     }
     
@@ -281,8 +283,8 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(129, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(Id_Barang)
                             .addComponent(Id_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -308,12 +310,10 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                         .addComponent(isBaru)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(warning, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CetakStok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CetakStok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(warning, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
@@ -338,12 +338,12 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                         .addComponent(Nama_barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(isBaru)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(warning)
-                    .addComponent(CetakStok))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(CetakStok)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(warning)
+                .addGap(22, 22, 22))
         );
 
         Nama_barang.setEnabled(false);
@@ -363,26 +363,24 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     }//GEN-LAST:event_Stok_barangActionPerformed
 
     private void inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputMouseClicked
-        if(addAble){
             String idBarang = Id_barang.getText();
             String namaBarang = Nama_barang.getText();
             int stokBarang = Integer.parseInt(Stok_barang.getText());
             int hargaBarang = Integer.parseInt(Harga_Barang.getText());
-            gudang.barangBaru(idBarang,namaBarang,hargaBarang,stokBarang);
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
-            barang Barang = gudang.rak.get(idBarang);
-
-            if(Barang != null && stokBarang != 0){
+            Barang barang = Gudang.rak.get(idBarang);
+        if(addAble){
+            if(barang != null && stokBarang != 0){
                 for(int i = 0; i < TabelStok.getRowCount(); i++){
                     if(model.getValueAt(i, 0).equals(idBarang)){
                         int currentQTY = (int) model.getValueAt(i, 2);
                         model.setValueAt(currentQTY+Integer.parseInt(Stok_barang.getText()), i, 2);
-                        gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, 0);
+                        Gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, currentQTY+Integer.parseInt(Stok_barang.getText()));
                     }
                 }
             }else{
                 model.addRow(new Object[]{idBarang, namaBarang, stokBarang, hargaBarang});
-                gudang.barangBaru(idBarang, namaBarang, hargaBarang, stokBarang);
+                Gudang.barangBaru(idBarang, namaBarang, hargaBarang, stokBarang);
             }
             AccessXML.writeXML();
             TabelStok.setModel(model);
@@ -403,7 +401,11 @@ public class PanelRestok extends javax.swing.JLayeredPane {
 
     private void CetakStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CetakStokMouseClicked
         try {
-           FileWriter fw = new FileWriter(filename, true);
+           String userHome = System.getProperty("user.home");
+           String documentsPath = userHome + File.separator + "Documents";
+           String filePath = documentsPath + File.separator + filename;
+           
+           FileWriter fw = new FileWriter(filePath, true);
            BufferedWriter w = new BufferedWriter(fw);
 
            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
@@ -420,8 +422,8 @@ public class PanelRestok extends javax.swing.JLayeredPane {
            w.write("------------------------------------------");
            w.newLine();
 
-           for (String id : gudang.rak.keySet()) {
-               barang it = gudang.rak.get(id);
+           for (String id : Gudang.rak.keySet()) {
+               Barang it = Gudang.rak.get(id);
                w.write("|Produk: " + it.getName() + "\t\t" + "| Jumlah Stok: " + it.getQty() +
                        "\t\t| " + (it.getQty() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
                w.newLine();
@@ -438,7 +440,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
            w.close(); // Menutup objek BufferedReader
            fw.close();
 
-           System.out.println("Laporan telah dicatat dalam file \'" + filename + "\'");
+           warning.setText("Laporan telah dicatat dalam file \'" + filePath + "\'");
        } catch (IOException e) {
            // Menampilkan pesan kesalahan jika terjadi eksepsi
            System.out.println("Ada error pada i/o");

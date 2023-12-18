@@ -3,7 +3,7 @@
   <sayur>
     <productID>P005</productID>
     <nama>Buncis</nama>
-    <jumlah_stok>20</jumlah_stok>
+    <jumlah_stok>50</jumlah_stok>
     <harga>6000</harga>
   </sayur>
   <sayur>
@@ -27,7 +27,7 @@
   <sayur>
     <productID>P001</productID>
     <nama>Bayam</nama>
-    <jumlah_stok>12</jumlah_stok>
+    <jumlah_stok>30</jumlah_stok>
     <harga>5000</harga>
   </sayur>
   <sayur>
@@ -39,14 +39,8 @@
   <sayur>
     <productID>P002</productID>
     <nama>Kangkung</nama>
-    <jumlah_stok>20</jumlah_stok>
+    <jumlah_stok>17</jumlah_stok>
     <harga>4000</harga>
-  </sayur>
-  <sayur>
-    <productID>P010</productID>
-    <nama>Labu</nama>
-    <jumlah_stok>14</jumlah_stok>
-    <harga>8500</harga>
   </sayur>
   <sayur>
     <productID>P009</productID>
@@ -59,5 +53,11 @@
     <nama>Lobak</nama>
     <jumlah_stok>17</jumlah_stok>
     <harga>5500</harga>
+  </sayur>
+  <sayur>
+    <productID>P010</productID>
+    <nama>Labu</nama>
+    <jumlah_stok>14</jumlah_stok>
+    <harga>8500</harga>
   </sayur>
 </barang>

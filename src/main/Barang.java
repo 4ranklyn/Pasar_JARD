@@ -8,12 +8,12 @@ package main;
  *
  * @author ryanf
  */
-public class barang{
+public class Barang{
     private String namaBarang;
     private int harga;
     private int jumlahStok;
 
-    public barang(String namaBarang, int harga, int jumlahStok){
+    public Barang(String namaBarang, int harga, int jumlahStok){
         this.namaBarang = namaBarang;
         this.harga = harga;
         this.jumlahStok = jumlahStok;

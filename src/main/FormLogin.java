@@ -9,13 +9,13 @@ package main;
  *
  * @author bara
  */
-public class form_login extends javax.swing.JFrame {
+public class FormLogin extends javax.swing.JFrame {
         int xx, xy;
         
     /**
      * Creates new form form_login
      */
-    public form_login() {
+    public FormLogin() {
         AccessXML.readXML();
         initComponents();
     }
@@ -68,6 +68,7 @@ public class form_login extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3916598.png"))); // NOI18N
         getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 140, 140));
 
+<<<<<<< HEAD:src/main/form_login.java
         Password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 PasswordFocusGained(evt);
@@ -76,6 +77,11 @@ public class form_login extends javax.swing.JFrame {
                 PasswordFocusLost(evt);
             }
         });
+=======
+        Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Password.setToolTipText("Password");
+        Password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+>>>>>>> 1180c2591dfcea0d4bb77a49e2dbb042c2520077:src/main/FormLogin.java
         getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 200, 40));
 
         Name_logo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -181,7 +187,7 @@ public class form_login extends javax.swing.JFrame {
         String username = Username.getText();
         String password = Password.getText();
         
-        if(user.users.get(username).equals(password)){
+        if(User.users.get(username).equals(password)){
             isLogin = true;
             usernameLogin = username;
             FrameUtama mainApp = new FrameUtama();
@@ -222,20 +228,21 @@ public class form_login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new form_login().setVisible(true);
+                new FormLogin().setVisible(true);
             }
         });
     }
