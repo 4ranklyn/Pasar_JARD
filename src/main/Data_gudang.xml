@@ -19,6 +19,12 @@
     <harga>7500</harga>
   </sayur>
   <sayur>
+    <productID>sss</productID>
+    <nama>sss</nama>
+    <jumlah_stok>33</jumlah_stok>
+    <harga>4758</harga>
+  </sayur>
+  <sayur>
     <productID>P006</productID>
     <nama>Brokoli</nama>
     <jumlah_stok>12</jumlah_stok>

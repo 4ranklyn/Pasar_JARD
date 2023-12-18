@@ -32,7 +32,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
      */
     public PanelRestok() {
         initComponents();
-        Document docID = Id_barang.getDocument();
+        Document docID = Kolom_idBarang.getDocument();
         docID.addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -60,26 +60,26 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             public void changedUpdate(DocumentEvent e) {}
         });
         
-        Document docStok = Stok_barang.getDocument();
+        Document docStok = Kolom_stokBarang.getDocument();
         docStok.addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 SwingUtilities.invokeLater(() -> {
-                    String text = Stok_barang.getText();
+                    String text = Kolom_stokBarang.getText();
                     if (!text.matches("^[0-9]*$")) {
-                        Stok_barang.setText(text.replaceAll("[^0-9]", ""));
+                        Kolom_stokBarang.setText(text.replaceAll("[^0-9]", ""));
                     } 
                     if (text.charAt(0) == '0') {
-                        Stok_barang.setText(Integer.toString(Integer.parseInt(text)));
+                        Kolom_stokBarang.setText(Integer.toString(Integer.parseInt(text)));
                     }
                 });
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
                 SwingUtilities.invokeLater(() -> {
-                    String text = Stok_barang.getText();
+                    String text = Kolom_stokBarang.getText();
                     if (text.isEmpty()) {
-                        Stok_barang.setText("0");
+                        Kolom_stokBarang.setText("0");
                     }
                 });
             }
@@ -88,6 +88,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         });
         
         isBaru.addItemListener(new ItemListener() {
+            @Override
             public void itemStateChanged(ItemEvent e) {
                 if (isBaru.isSelected() && search()) {
                     addAble = false;
@@ -129,15 +130,15 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     }
     
     public boolean search(){
-        String id = Id_barang.getText();
+        String id = Kolom_idBarang.getText();
         if(Gudang.rak.get(id)==null){
-            Nama_barang.setText("");
-            Harga_Barang.setText(Integer.toString(0));
+            Kolom_namaBarang.setText("");
+            Kolom_hargaBarang.setText(Integer.toString(0));
             return false;
         }
         Barang Barang = Gudang.rak.get(id);
-        Nama_barang.setText(Barang.getName());
-        Harga_Barang.setText(Integer.toString(Barang.getPrice()));
+        Kolom_namaBarang.setText(Barang.getName());
+        Kolom_hargaBarang.setText(Integer.toString(Barang.getPrice()));
         return true;
     }
     
@@ -157,46 +158,46 @@ public class PanelRestok extends javax.swing.JLayeredPane {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Id_barang = new javax.swing.JTextField();
-        Nama_barang = new javax.swing.JTextField();
-        Stok_barang = new javax.swing.JTextField();
-        Harga_Barang = new javax.swing.JTextField();
-        Id_Barang = new javax.swing.JLabel();
+        Kolom_idBarang = new javax.swing.JTextField();
+        Kolom_namaBarang = new javax.swing.JTextField();
+        Kolom_stokBarang = new javax.swing.JTextField();
+        Kolom_hargaBarang = new javax.swing.JTextField();
+        Label_idBarang = new javax.swing.JLabel();
         input = new javax.swing.JButton();
-        Nama_Barang = new javax.swing.JLabel();
-        Harga_barang = new javax.swing.JLabel();
+        Label_namaBarang = new javax.swing.JLabel();
+        Label_hargaBarang = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelStok = new javax.swing.JTable();
         CetakStok = new javax.swing.JButton();
-        Stok_l = new javax.swing.JLabel();
+        Label_stokBarang = new javax.swing.JLabel();
         isBaru = new javax.swing.JCheckBox();
         warning = new javax.swing.JLabel();
 
-        Id_barang.addActionListener(new java.awt.event.ActionListener() {
+        Kolom_idBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Id_barangActionPerformed(evt);
+                Kolom_idBarangActionPerformed(evt);
             }
         });
 
-        Nama_barang.addActionListener(new java.awt.event.ActionListener() {
+        Kolom_namaBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nama_barangActionPerformed(evt);
+                Kolom_namaBarangActionPerformed(evt);
             }
         });
 
-        Stok_barang.addActionListener(new java.awt.event.ActionListener() {
+        Kolom_stokBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Stok_barangActionPerformed(evt);
+                Kolom_stokBarangActionPerformed(evt);
             }
         });
 
-        Harga_Barang.addActionListener(new java.awt.event.ActionListener() {
+        Kolom_hargaBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Harga_BarangActionPerformed(evt);
+                Kolom_hargaBarangActionPerformed(evt);
             }
         });
 
-        Id_Barang.setText("Id Barang");
+        Label_idBarang.setText("Id Barang");
 
         input.setText("Input");
         input.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,9 +211,9 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             }
         });
 
-        Nama_Barang.setText("Nama Barang");
+        Label_namaBarang.setText("Nama Barang");
 
-        Harga_barang.setText("Harga per Barang");
+        Label_hargaBarang.setText("Harga per Barang");
 
         TabelStok.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,7 +252,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             }
         });
 
-        Stok_l.setText("Stok");
+        Label_stokBarang.setText("Stok");
 
         isBaru.setText("barang baru");
         isBaru.addActionListener(new java.awt.event.ActionListener() {
@@ -262,17 +263,17 @@ public class PanelRestok extends javax.swing.JLayeredPane {
 
         warning.setText(" ");
 
-        setLayer(Id_barang, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(Nama_barang, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(Stok_barang, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(Harga_Barang, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(Id_Barang, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Kolom_idBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Kolom_namaBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Kolom_stokBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Kolom_hargaBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Label_idBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(input, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(Nama_Barang, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(Harga_barang, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Label_namaBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Label_hargaBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(CetakStok, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(Stok_l, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(Label_stokBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(isBaru, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(warning, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -285,26 +286,26 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Id_Barang)
-                            .addComponent(Id_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Label_idBarang)
+                            .addComponent(Kolom_idBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addComponent(Nama_Barang)
+                                .addComponent(Label_namaBarang)
                                 .addGap(14, 14, 14))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Nama_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Kolom_namaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Stok_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Kolom_stokBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
-                                .addComponent(Stok_l)))
+                                .addComponent(Label_stokBarang)))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Harga_Barang, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Harga_barang))
+                            .addComponent(Kolom_hargaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_hargaBarang))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(isBaru)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -322,21 +323,21 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Id_barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Kolom_idBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Nama_Barang)
-                                .addComponent(Id_Barang))
+                                .addComponent(Label_namaBarang)
+                                .addComponent(Label_idBarang))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Stok_l)
-                                .addComponent(Harga_barang)))
+                                .addComponent(Label_stokBarang)
+                                .addComponent(Label_hargaBarang)))
                         .addGap(38, 38, 38))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Harga_Barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Stok_barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Kolom_hargaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Kolom_stokBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(input)
-                        .addComponent(Nama_barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Kolom_namaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(isBaru)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -347,29 +348,28 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        Nama_barang.setEnabled(false);
-        Harga_Barang.setEnabled(false);
+        Kolom_namaBarang.setEnabled(false);
+        Kolom_hargaBarang.setEnabled(false);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Id_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Id_barangActionPerformed
+    private void Kolom_idBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Kolom_idBarangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Id_barangActionPerformed
+    }//GEN-LAST:event_Kolom_idBarangActionPerformed
 
-    private void Nama_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nama_barangActionPerformed
+    private void Kolom_namaBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Kolom_namaBarangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Nama_barangActionPerformed
+    }//GEN-LAST:event_Kolom_namaBarangActionPerformed
 
-    private void Stok_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stok_barangActionPerformed
+    private void Kolom_stokBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Kolom_stokBarangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Stok_barangActionPerformed
+    }//GEN-LAST:event_Kolom_stokBarangActionPerformed
 
     private void inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputMouseClicked
         if(addAble){
-            String idBarang = Id_barang.getText();
-            String namaBarang = Nama_barang.getText();
-            int stokBarang = Integer.parseInt(Stok_barang.getText());
-            int hargaBarang = Integer.parseInt(Harga_Barang.getText());
-            Gudang.barangBaru(idBarang,namaBarang,hargaBarang,stokBarang);
+            String idBarang = Kolom_idBarang.getText();
+            String namaBarang = Kolom_namaBarang.getText();
+            int stokBarang = Integer.parseInt(Kolom_stokBarang.getText());
+            int hargaBarang = Integer.parseInt(Kolom_hargaBarang.getText());
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
             Barang Barang = Gudang.rak.get(idBarang);
 
@@ -377,8 +377,8 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                 for(int i = 0; i < TabelStok.getRowCount(); i++){
                     if(model.getValueAt(i, 0).equals(idBarang)){
                         int currentQTY = (int) model.getValueAt(i, 2);
-                        model.setValueAt(currentQTY+Integer.parseInt(Stok_barang.getText()), i, 2);
-                        Gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, currentQTY+Integer.parseInt(Stok_barang.getText()));
+                        model.setValueAt(currentQTY+Integer.parseInt(Kolom_stokBarang.getText()), i, 2);
+                        Gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, currentQTY+Integer.parseInt(Kolom_stokBarang.getText()));
                     }
                 }
             }else{
@@ -394,9 +394,9 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputActionPerformed
 
-    private void Harga_BarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Harga_BarangActionPerformed
+    private void Kolom_hargaBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Kolom_hargaBarangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Harga_BarangActionPerformed
+    }//GEN-LAST:event_Kolom_hargaBarangActionPerformed
 
     private void CetakStokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CetakStokActionPerformed
         // TODO add your handling code here:
@@ -452,25 +452,25 @@ public class PanelRestok extends javax.swing.JLayeredPane {
 
     private void isBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isBaruActionPerformed
         if(this.isBaru.isSelected()){
-            Nama_barang.setEnabled(true);
-            Harga_Barang.setEnabled(true);
+            Kolom_namaBarang.setEnabled(true);
+            Kolom_hargaBarang.setEnabled(true);
         }else{
-            Nama_barang.setEnabled(false);
-            Harga_Barang.setEnabled(false);
+            Kolom_namaBarang.setEnabled(false);
+            Kolom_hargaBarang.setEnabled(false);
         }
     }//GEN-LAST:event_isBaruActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CetakStok;
-    private javax.swing.JTextField Harga_Barang;
-    private javax.swing.JLabel Harga_barang;
-    private javax.swing.JLabel Id_Barang;
-    private javax.swing.JTextField Id_barang;
-    private javax.swing.JLabel Nama_Barang;
-    private javax.swing.JTextField Nama_barang;
-    private javax.swing.JTextField Stok_barang;
-    private javax.swing.JLabel Stok_l;
+    private javax.swing.JTextField Kolom_hargaBarang;
+    private javax.swing.JTextField Kolom_idBarang;
+    private javax.swing.JTextField Kolom_namaBarang;
+    private javax.swing.JTextField Kolom_stokBarang;
+    private javax.swing.JLabel Label_hargaBarang;
+    private javax.swing.JLabel Label_idBarang;
+    private javax.swing.JLabel Label_namaBarang;
+    private javax.swing.JLabel Label_stokBarang;
     private javax.swing.JTable TabelStok;
     private javax.swing.JButton input;
     private javax.swing.JCheckBox isBaru;

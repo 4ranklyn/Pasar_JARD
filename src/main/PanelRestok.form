@@ -21,32 +21,32 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="Id_Barang" min="-2" max="-2" attributes="0"/>
-                          <Component id="Id_barang" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="Label_idBarang" min="-2" max="-2" attributes="0"/>
+                          <Component id="Kolom_idBarang" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="Nama_Barang" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_namaBarang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Nama_barang" min="-2" pref="97" max="-2" attributes="0"/>
+                              <Component id="Kolom_namaBarang" min="-2" pref="97" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Stok_barang" min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="Kolom_stokBarang" min="-2" pref="52" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="Stok_l" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_stokBarang" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Harga_Barang" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="Harga_barang" min="-2" max="-2" attributes="0"/>
+                          <Component id="Kolom_hargaBarang" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="Label_hargaBarang" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="isBaru" min="-2" max="-2" attributes="0"/>
@@ -71,25 +71,25 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="Id_barang" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="Kolom_idBarang" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="Nama_Barang" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Id_Barang" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_namaBarang" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_idBarang" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="Stok_l" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Harga_barang" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_stokBarang" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_hargaBarang" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="Harga_Barang" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Stok_barang" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Kolom_hargaBarang" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Kolom_stokBarang" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="input" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Nama_barang" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Kolom_namaBarang" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="isBaru" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -106,33 +106,33 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="Id_barang">
+    <Component class="javax.swing.JTextField" name="Kolom_idBarang">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Id_barangActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Kolom_idBarangActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="Nama_barang">
+    <Component class="javax.swing.JTextField" name="Kolom_namaBarang">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Nama_barangActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Nama_barang.setEnabled(false);"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Stok_barang">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Stok_barangActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Harga_Barang">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Harga_BarangActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Kolom_namaBarangActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Harga_Barang.setEnabled(false);"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Kolom_namaBarang.setEnabled(false);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="Id_Barang">
+    <Component class="javax.swing.JTextField" name="Kolom_stokBarang">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Kolom_stokBarangActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Kolom_hargaBarang">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Kolom_hargaBarangActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Kolom_hargaBarang.setEnabled(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Label_idBarang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Id Barang"/>
       </Properties>
@@ -146,12 +146,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="Nama_Barang">
+    <Component class="javax.swing.JLabel" name="Label_namaBarang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nama Barang"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Harga_barang">
+    <Component class="javax.swing.JLabel" name="Label_hargaBarang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Harga per Barang"/>
       </Properties>
@@ -213,7 +213,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CetakStokActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="Stok_l">
+    <Component class="javax.swing.JLabel" name="Label_stokBarang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Stok"/>
       </Properties>
