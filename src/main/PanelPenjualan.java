@@ -279,7 +279,6 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         jScrollPane1.setViewportView(isiKeranjang);
 
         KolomSubtotal.setBackground(new java.awt.Color(30, 30, 30));
-        KolomSubtotal.setForeground(new java.awt.Color(0, 0, 0));
         KolomSubtotal.setEnabled(false);
 
         label_subtotal.setText("Subtotal");
@@ -304,7 +303,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
 
         label_konfirmasi.setText(" ");
 
-        tombolClear.setText("Clear table");
+        tombolClear.setText("Hapus Keranjang");
         tombolClear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tombolClearMouseClicked(evt);
