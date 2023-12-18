@@ -521,12 +521,12 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                     writer.write(String.format("%-15s%-15s\n", model.getValueAt(i, 0), model.getValueAt(i, 1)));
                     writer.write(String.format("  %-3sPCS x\t %-15s = %-15s\n", model.getValueAt(i, 3), "Rp" + model.getValueAt(i, 2) + ",00", "Rp" + model.getValueAt(i, 4) + ",00"));
                 }
+                model.setRowCount(0);
                 AccessXML.writeXML();
                 writer.write(String.format("\nSUBTOTAL  : %-15s", ("Rp" + KolomSubtotal.getText() + ",00")));
                 writer.write(String.format("\nTUNAI     : %-15s", ("Rp" + KolomBayar.getText() + ",00")));
                 writer.write(String.format("\nKEMBALIAN : %-15s\n", ("Rp" + KolomKembali.getText() + ",00")));
-
-                writer.write("\n================= TERIMA KASIH =================");
+                writer.write("\n================= TERIMA KASIH ===============");
                 label_konfirmasi.setText("Struk pembayaran disimpan di "+filePath);
             } catch (IOException e) {
                 System.out.println("An error occurred");

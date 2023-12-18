@@ -15,6 +15,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
         
 /**
  *
@@ -311,8 +312,8 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(warning, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(warning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(18, 18, 18)
                             .addComponent(CetakStok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(93, 93, 93))
         );
@@ -377,7 +378,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                     if(model.getValueAt(i, 0).equals(idBarang)){
                         int currentQTY = (int) model.getValueAt(i, 2);
                         model.setValueAt(currentQTY+Integer.parseInt(Stok_barang.getText()), i, 2);
-                        gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, 0);
+                        gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, currentQTY+Integer.parseInt(Stok_barang.getText()));
                     }
                 }
             }else{
@@ -403,7 +404,11 @@ public class PanelRestok extends javax.swing.JLayeredPane {
 
     private void CetakStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CetakStokMouseClicked
         try {
-           FileWriter fw = new FileWriter(filename, true);
+           String userHome = System.getProperty("user.home");
+           String documentsPath = userHome + File.separator + "Documents";
+           String filePath = documentsPath + File.separator + filename + ".txt";
+           
+           FileWriter fw = new FileWriter(filePath, true);
            BufferedWriter w = new BufferedWriter(fw);
 
            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
@@ -438,7 +443,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
            w.close(); // Menutup objek BufferedReader
            fw.close();
 
-           System.out.println("Laporan telah dicatat dalam file \'" + filename + "\'");
+           warning.setText("Laporan telah dicatat dalam file \'" + filepath + "\'");
        } catch (IOException e) {
            // Menampilkan pesan kesalahan jika terjadi eksepsi
            System.out.println("Ada error pada i/o");

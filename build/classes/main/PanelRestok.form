@@ -56,8 +56,8 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jScrollPane1" alignment="0" min="-2" pref="494" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="warning" min="-2" pref="327" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="warning" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="CetakStok" min="-2" pref="114" max="-2" attributes="0"/>
                       </Group>
                   </Group>

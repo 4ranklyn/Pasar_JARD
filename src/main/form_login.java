@@ -67,6 +67,10 @@ public class form_login extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3916598.png"))); // NOI18N
         getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 140, 140));
+
+        Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Password.setToolTipText("Password");
+        Password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
         getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 200, 40));
 
         Name_logo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N

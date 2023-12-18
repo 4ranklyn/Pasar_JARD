@@ -27,7 +27,7 @@
   <sayur>
     <productID>P001</productID>
     <nama>Bayam</nama>
-    <jumlah_stok>12</jumlah_stok>
+    <jumlah_stok>10</jumlah_stok>
     <harga>5000</harga>
   </sayur>
   <sayur>
@@ -39,7 +39,7 @@
   <sayur>
     <productID>P002</productID>
     <nama>Kangkung</nama>
-    <jumlah_stok>20</jumlah_stok>
+    <jumlah_stok>17</jumlah_stok>
     <harga>4000</harga>
   </sayur>
   <sayur>
