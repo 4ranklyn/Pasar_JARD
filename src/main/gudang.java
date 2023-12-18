@@ -11,12 +11,12 @@ import java.util.HashMap;
  *
  * @author ryanf
  */
-public class gudang {
-    public static HashMap<String, barang> rak = new HashMap<String, barang>();
+public class Gudang {
+    public static HashMap<String, Barang> rak = new HashMap<String, Barang>();
     
     public static void barangBaru(String id, String namaBarang, int harga, int qty){
         
-        barang Barang = new barang(namaBarang, harga, qty);
+        Barang Barang = new Barang(namaBarang, harga, qty);
         rak.put(id, Barang);
     }
 }
