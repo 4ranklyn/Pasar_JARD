@@ -16,7 +16,7 @@ public class Gudang {
     
     public static void barangBaru(String id, String namaBarang, int harga, int qty){
         
-        Barang Barang = new Barang(namaBarang, harga, qty);
-        rak.put(id, Barang);
+        Barang barang = new Barang(namaBarang, harga, qty);
+        rak.put(id, barang);
     }
 }

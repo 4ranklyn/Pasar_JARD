@@ -113,7 +113,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                     int stok = (int) model.getValueAt(row, 2);
                     int harga = (int) model.getValueAt(row, 3);
                     
-                    gudang.rak.get(id).modifyProperties(nama, harga, stok);
+                    Gudang.rak.get(id).modifyProperties(nama, harga, stok);
                     AccessXML.writeXML();
                 }
             }
@@ -123,22 +123,22 @@ public class PanelRestok extends javax.swing.JLayeredPane {
         Date currentDate = new Date(); //mengakses tanggal terkini
         this.dateNow = dateFormat.format(currentDate);
         this.filename = "Laporan " + dateFormat.format(currentDate) + ".txt";
-        for(String id : gudang.rak.keySet()){
-            barang Barang = gudang.rak.get(id);
-            model.addRow(new Object[]{id, Barang.getName(), Barang.getQty(), Barang.getPrice()});
+        for(String id : Gudang.rak.keySet()){
+            Barang barang = Gudang.rak.get(id);
+            model.addRow(new Object[]{id, barang.getName(), barang.getQty(), barang.getPrice()});
         }
     }
     
     public boolean search(){
         String id = Id_barang.getText();
-        if(gudang.rak.get(id)==null){
+        if(Gudang.rak.get(id)==null){
             Nama_barang.setText("");
             Harga_Barang.setText(Integer.toString(0));
             return false;
         }
-        barang Barang = gudang.rak.get(id);
-        Nama_barang.setText(Barang.getName());
-        Harga_Barang.setText(Integer.toString(Barang.getPrice()));
+        Barang barang = Gudang.rak.get(id);
+        Nama_barang.setText(barang.getName());
+        Harga_Barang.setText(Integer.toString(barang.getPrice()));
         return true;
     }
     
@@ -368,19 +368,19 @@ public class PanelRestok extends javax.swing.JLayeredPane {
             int stokBarang = Integer.parseInt(Stok_barang.getText());
             int hargaBarang = Integer.parseInt(Harga_Barang.getText());
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TabelStok.getModel();
-            barang Barang = gudang.rak.get(idBarang);
+            Barang barang = Gudang.rak.get(idBarang);
         if(addAble){
-            if(Barang != null && stokBarang != 0){
+            if(barang != null && stokBarang != 0){
                 for(int i = 0; i < TabelStok.getRowCount(); i++){
                     if(model.getValueAt(i, 0).equals(idBarang)){
                         int currentQTY = (int) model.getValueAt(i, 2);
                         model.setValueAt(currentQTY+Integer.parseInt(Stok_barang.getText()), i, 2);
-                        gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, currentQTY+Integer.parseInt(Stok_barang.getText()));
+                        Gudang.rak.get(idBarang).modifyProperties(namaBarang, hargaBarang, currentQTY+Integer.parseInt(Stok_barang.getText()));
                     }
                 }
             }else{
                 model.addRow(new Object[]{idBarang, namaBarang, stokBarang, hargaBarang});
-                gudang.barangBaru(idBarang, namaBarang, hargaBarang, stokBarang);
+                Gudang.barangBaru(idBarang, namaBarang, hargaBarang, stokBarang);
             }
             AccessXML.writeXML();
             TabelStok.setModel(model);
@@ -422,8 +422,8 @@ public class PanelRestok extends javax.swing.JLayeredPane {
            w.write("------------------------------------------");
            w.newLine();
 
-           for (String id : gudang.rak.keySet()) {
-               barang it = gudang.rak.get(id);
+           for (String id : Gudang.rak.keySet()) {
+               Barang it = Gudang.rak.get(id);
                w.write("|Produk: " + it.getName() + "\t\t" + "| Jumlah Stok: " + it.getQty() +
                        "\t\t| " + (it.getQty() <= 0 ? "Kosong\t\t|" : "Tersedia\t\t|"));
                w.newLine();
