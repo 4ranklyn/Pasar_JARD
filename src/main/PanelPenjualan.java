@@ -180,6 +180,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         label_kembalian = new javax.swing.JLabel();
         tombol_printstruk = new javax.swing.JButton();
         label_konfirmasi = new javax.swing.JLabel();
+        tombolClear = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(30, 30, 30));
 
@@ -303,6 +304,21 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
 
         label_konfirmasi.setText(" ");
 
+        tombolClear.setText("Clear table");
+        tombolClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tombolClearMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tombolClearMousePressed(evt);
+            }
+        });
+        tombolClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombolClearActionPerformed(evt);
+            }
+        });
+
         setLayer(label_idbarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(kolomIdBarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(label_namabarang, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -323,6 +339,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         setLayer(label_kembalian, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(tombol_printstruk, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(label_konfirmasi, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(tombolClear, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -352,14 +369,17 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(KolomQTY, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(KolomTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tombolTambahkan, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addComponent(label_totalharga))))
+                                .addComponent(label_totalharga))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(KolomTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tombolTambahkan, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tombolClear)))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(36, 36, 36)
@@ -394,7 +414,8 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_idbarang)
-                    .addComponent(kolomIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kolomIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tombolClear))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_namabarang)
@@ -539,6 +560,19 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
         // TODO add your handling code here:
     }//GEN-LAST:event_isiKeranjangPropertyChange
 
+    private void tombolClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolClearMouseClicked
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) isiKeranjang.getModel();
+        model.setRowCount(0);
+    }//GEN-LAST:event_tombolClearMouseClicked
+
+    private void tombolClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolClearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tombolClearActionPerformed
+
+    private void tombolClearMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolClearMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tombolClearMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KolomBayar;
     private javax.swing.JTextField KolomHarga;
@@ -559,6 +593,7 @@ public class PanelPenjualan extends javax.swing.JLayeredPane {
     private javax.swing.JLabel label_qty;
     private javax.swing.JLabel label_subtotal;
     private javax.swing.JLabel label_totalharga;
+    private javax.swing.JButton tombolClear;
     private javax.swing.JButton tombolTambahkan;
     private javax.swing.JButton tombol_printstruk;
     // End of variables declaration//GEN-END:variables

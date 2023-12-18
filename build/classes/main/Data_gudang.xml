@@ -3,7 +3,7 @@
   <sayur>
     <productID>P005</productID>
     <nama>Buncis</nama>
-    <jumlah_stok>50</jumlah_stok>
+    <jumlah_stok>45</jumlah_stok>
     <harga>6000</harga>
   </sayur>
   <sayur>
@@ -21,13 +21,13 @@
   <sayur>
     <productID>P006</productID>
     <nama>Brokoli</nama>
-    <jumlah_stok>12</jumlah_stok>
+    <jumlah_stok>5</jumlah_stok>
     <harga>9000</harga>
   </sayur>
   <sayur>
     <productID>P001</productID>
     <nama>Bayam</nama>
-    <jumlah_stok>45</jumlah_stok>
+    <jumlah_stok>42</jumlah_stok>
     <harga>5000</harga>
   </sayur>
   <sayur>
