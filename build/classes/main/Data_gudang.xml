@@ -27,7 +27,13 @@
   <sayur>
     <productID>P001</productID>
     <nama>Bayam</nama>
-    <jumlah_stok>30</jumlah_stok>
+    <jumlah_stok>45</jumlah_stok>
+    <harga>5000</harga>
+  </sayur>
+  <sayur>
+    <productID>P011</productID>
+    <nama>Ayam 100gr</nama>
+    <jumlah_stok>25</jumlah_stok>
     <harga>5000</harga>
   </sayur>
   <sayur>
@@ -43,6 +49,12 @@
     <harga>4000</harga>
   </sayur>
   <sayur>
+    <productID>P010</productID>
+    <nama>Labu</nama>
+    <jumlah_stok>14</jumlah_stok>
+    <harga>8500</harga>
+  </sayur>
+  <sayur>
     <productID>P009</productID>
     <nama>Sawi</nama>
     <jumlah_stok>28</jumlah_stok>
@@ -53,11 +65,5 @@
     <nama>Lobak</nama>
     <jumlah_stok>17</jumlah_stok>
     <harga>5500</harga>
-  </sayur>
-  <sayur>
-    <productID>P010</productID>
-    <nama>Labu</nama>
-    <jumlah_stok>14</jumlah_stok>
-    <harga>8500</harga>
   </sayur>
 </barang>

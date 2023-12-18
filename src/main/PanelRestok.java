@@ -413,7 +413,7 @@ public class PanelRestok extends javax.swing.JLayeredPane {
            Date currentTime = new Date(currentTimeMillis);
 
            w.write("Catatan Daftar Stok Tanggal : " + dateNow);
-           w.write(" \nTime -> " + dateNow);
+           w.write(" \nTime -> " + timeFormat.format(currentTime));
            w.newLine();
            w.write("------------------------------------------");
            w.newLine();
@@ -437,6 +437,8 @@ public class PanelRestok extends javax.swing.JLayeredPane {
                    w.newLine();
                }
            }
+           w.newLine();
+           w.newLine();
            w.close(); // Menutup objek BufferedReader
            fw.close();
 
