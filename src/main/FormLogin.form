@@ -55,12 +55,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JPasswordField" name="Password">
-<<<<<<< HEAD:build/classes/main/form_login.form
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PasswordFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PasswordFocusLost"/>
-      </Events>
-=======
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="toolTipText" type="java.lang.String" value="Password"/>
@@ -72,7 +66,6 @@
           </Border>
         </Property>
       </Properties>
->>>>>>> 1180c2591dfcea0d4bb77a49e2dbb042c2520077:src/main/FormLogin.form
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="80" y="190" width="200" height="40"/>
