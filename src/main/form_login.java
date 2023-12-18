@@ -67,6 +67,15 @@ public class form_login extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3916598.png"))); // NOI18N
         getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 140, 140));
+
+        Password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PasswordFocusLost(evt);
+            }
+        });
         getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 200, 40));
 
         Name_logo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -181,6 +190,20 @@ public class form_login extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_tombol_loginMouseClicked
+
+    private void PasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusLost
+        String pass=Password.getText();
+        if(pass.equals("")||pass.equals("Password")){
+            Password.setText("Password");
+        }
+    }//GEN-LAST:event_PasswordFocusLost
+
+    private void PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusGained
+        String pass=Password.getText();
+        if(pass.equals("Password")){
+            Password.setText("");
+        }
+    }//GEN-LAST:event_PasswordFocusGained
 
     /**
      * @param args the command line arguments
